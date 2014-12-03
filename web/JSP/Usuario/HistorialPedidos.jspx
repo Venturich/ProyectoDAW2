@@ -15,16 +15,27 @@
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
 
     <html>
+        <head>
+            <script type="text/javascript">
+                function mostrarPedido(idpedido){
+                    
+                }
+            </script>
+        </head>
         <body>
             <h1>Historial</h1>
             <c:forEach items="${pedidosFinalizados}" var="i">
                 <div class="historial-pedido">
-                    <p>Pedidos número: <c:out value="${i.idPedido}"/></p>
-                    <p>Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/></p>
-                    <p>Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
+                    <p>Pedidos número: <c:out value="${i.idPedido}"/> 
+                    Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/> 
+                    Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
+                    <button onclick="mostrarPedido(${i.idPedido})">Ver pedido</button>
                 </div>
 
             </c:forEach>
+            <div id="contenedor-pedidos">
+                
+            </div>
 
         </body>
     </html>

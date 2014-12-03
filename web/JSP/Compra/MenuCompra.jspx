@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : MenuCompra
+    Created on : 03-dic-2014, 21:54:17
+    Author     : Ventura
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+    <html>
+        <body>
+            <h1>Comprar</h1>
+            <form action="ProcesarCompra" method="post">
+                <c:forEach items="${catalogo}" var="producto">
+
+                    <c:if test="${producto.stock >0}">
+                        <div class="display-roducto">
+
+                            <p>
+                                <input type="checkbox" value="${producto.id}" name="idProducto"/>&#160;
+                                <span>
+                                    <c:out value="${producto.denominacion}"/>&#160;
+                                </span>
+                                <span>
+                                    <c:out value="${producto.descripcion}"/>&#160;
+                                </span>
+                                <span>
+                                    <fmt:formatNumber  type="currency" pattern="##.00 €" value="${producto.precio}"/>&#160;
+                                </span>
+                                <span>
+                                    <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1"/>
+                                </span>
+                            </p>
+                        </div>
+                    </c:if>
+
+                </c:forEach>
+                <button name="boton" value="volver" type="submit">volver</button>
+                <button name="boton" value="comprar" type="submit">comprar</button>
+            </form>
+        </body>
+    </html>
+
+</jsp:root>

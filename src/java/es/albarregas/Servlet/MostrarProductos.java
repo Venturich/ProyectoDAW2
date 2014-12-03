@@ -11,18 +11,23 @@
  */
 package es.albarregas.Servlet;
 
+import es.albarregas.DAO.ProductosDAO;
+import es.albarregas.Modelo.Productos;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Ventura
  */
 public class MostrarProductos extends HttpServlet {
+
+    HttpSession sesion;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,8 +40,15 @@ public class MostrarProductos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-       
+        sesion = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        ProductosDAO proDao = new ProductosDAO();
+        ArrayList<Productos> catalogo = new ArrayList<Productos>();
+        catalogo = proDao.getCatalogo();
+        sesion.setAttribute("catalogo", catalogo);
+        getServletContext().getRequestDispatcher("/JSP/Compra/MenuCompra.jspx").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
