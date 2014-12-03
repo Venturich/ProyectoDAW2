@@ -1,0 +1,15 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} 
+${licensePrefix} 	Proyecto para:
+${licensePrefix} 	DI DWC DWE
+${licensePrefix} 
+${licensePrefix} 	Autor:
+${licensePrefix}	Ventura Preciado Sánchez
+${licensePrefix}
+${licensePrefix}	DAW2 IES ALBARREGAS
+${licensePrefix}
+<#if licenseLast??>
+${licenseLast}
+</#if>

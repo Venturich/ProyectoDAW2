@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarDatos
+    Created on : 02-dic-2014, 18:20:06
+    Author     : Ventura
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+    <html>
+        <body>
+            <form method="post" action="${pageContext.request.contextPath}/ModificarDatos">
+                <span class="registro-etiqueta">Nombre:</span> <input type="text" name="nombre" class="registro-entrada" value="${cliente.nombre}"/><br/>
+                <span class="registro-etiqueta">Apellidos:</span> <input type="text" name="apellidos" class="registro-entrada" value="${cliente.apellidos}"/><br/>
+                <span class="registro-etiqueta">NIF:</span><input type="text" maxlength="9" size="9" name="nif_nie" class="registro-entrada" value="${cliente.nif_nie}" readOnly="true"/><br/>
+                <fmt:formatDate type="date" value="${cliente.fechaNacimiento}" var="fecNac" pattern="yyyy-MM-dd"/>
+                <span class="registro-etiqueta">Fecha Nacimiento:</span> <input type="date" name="fechaNacimiento" class="registro-entrada" value="${fecNac}"/><br/>
+                <span class="registro-etiqueta">Sexo:</span> 
+                <c:choose>
+                    <c:when test="${cliente.sexo=='h'}">
+                        <input type="radio" name="sexo" value="h" class="registro-entrada calendario" checked="checked"/>Hombre 
+                        <input type="radio" name="sexo" value="m"/>Mujer<br/>
+                    </c:when>
+                    <c:otherwise>
+                        <input type="radio" name="sexo" value="h" class="registro-entrada calendario"/>Hombre 
+                        <input type="radio" name="sexo" value="m" checked="checked"/>Mujer<br/>
+                    </c:otherwise>
+                </c:choose>
+
+                <span class="registro-etiqueta">Direccion:</span> <input type="text" name="direccion" class="registro-entrada" value="${cliente.direccion}"/><br/>
+
+                <button type="submit" name="boton" value="volver">Volver</button>
+                <button type="submit" name="boton" value="modificar">Modificar</button>
+            </form>
+
+        </body>
+    </html>
+</jsp:root>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ProyectoFinal" docBase="ProyectoFinal">
+    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="2" maxIdle="30" maxWait="10000" 
+            name="jdbc/proyectoDAW2" password="2014" type="javax.sql.DataSource" 
+            url="jdbc:mysql://localhost:3306/tienda?useEncoding=true"
+            characterEncoding="UTF-8"
+            username="clientejava"/>
+</Context>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : index
+    Created on : 20-nov-2014, 19:48:29
+    Author     : Ventura
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <link href="CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+    <html> 
+        <head>
+
+
+        </head>
+        <body>
+
+            <header>
+                <jsp:include page="./HTML/Complementos/Cabecera.html">
+                </jsp:include>
+            </header>
+            <div>
+
+                <div id="login-marco">
+                    <form method="post" action="ComprobarLogin">
+                        <label class="login-etiqueta">Usuario</label><input type="email" name="email" class="login-entrada"/><span class="texto-ayuda">Debes introducir un email</span><br/>
+                        <label class="login-etiqueta">Password</label><input type="password" name="clave" class="login-entrada"/><span><c:out value="${error}"/></span><br/>
+                        <button class="login-boton" name="boton" value="logear" type="submit">Enviar</button>
+                        <button class="login-boton" type="reset" value="logear" >Limpiar</button>
+                        <button class="login-boton" name="boton" value="registrar" type="submit">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </body>
+    </html>
+
+</jsp:root>

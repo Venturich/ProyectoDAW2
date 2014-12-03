@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : menuUsuario
+    Created on : 21-nov-2014, 20:44:07
+    Author     : Ventura
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+
+
+    <!-- any content can be specified here, e.g.: -->
+    <html>
+        <body>
+
+            <div id="menu-usuario">
+                <h1>Bienvenido <c:out value="${cliente.nombre}"/>&#160;<c:out value="${cliente.apellidos}"/></h1>
+
+                <ul class="menu-lista">
+                    <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Usuario/ModificarDatos.jspx">Modificar datos personales</a></li>
+                    <li class="menu-linea"><a href="${pageContext.request.contextPath}/MostrarProductos">Realizar compra</a></li>
+
+
+                    <c:if test="${not empty sessionScope.pedidosPendientes}">
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Compra/CompraActual.jspx">Carrito actual</a></li>
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/FinalizarCompra">Finalizar compra</a></li>
+
+                    </c:if>
+                    <c:if test="${not empty sessionScope.pedidosFinalizados}">
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Usuario/HistorialPedidos.jspx">Historial de pedidos</a></li>
+                    </c:if>
+
+
+
+                </ul>
+            </div>
+            <div class="botonera">
+                <form method="post" action="cerrarSesion">
+                    <button type="submit">Cerrar sesión</button>
+                </form>
+            </div>
+        </body>
+    </html>
+
+
+</jsp:root>

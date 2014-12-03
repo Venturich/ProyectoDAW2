@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : HistorialPedidos
+    Created on : 02-dic-2014, 18:20:54
+    Author     : Ventura
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+
+    <html>
+        <body>
+            <h1>Historial</h1>
+            <c:forEach items="${pedidosFinalizados}" var="i">
+                <div class="historial-pedido">
+                    <p>Pedidos número: <c:out value="${i.idPedido}"/></p>
+                    <p>Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/></p>
+                    <p>Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
+                </div>
+
+            </c:forEach>
+
+        </body>
+    </html>
+</jsp:root>
