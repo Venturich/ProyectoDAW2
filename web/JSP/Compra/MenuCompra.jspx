@@ -37,6 +37,9 @@
                                 <span>
                                     <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1"/>
                                 </span>
+                                    <c:if test="${producto.stockMinimo gt producto.stock}">
+                                        <span>¡¡Ultimas unidades!!</span>
+                                    </c:if>
                             </p>
                         </div>
                     </c:if>
