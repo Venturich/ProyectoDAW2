@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  */
 public class MostrarProductos extends HttpServlet {
 
-    HttpSession sesion;
+    private HttpSession sesion;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

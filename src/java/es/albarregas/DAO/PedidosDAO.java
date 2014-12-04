@@ -26,7 +26,7 @@ public class PedidosDAO extends Conexion {
     public ArrayList<Pedidos> getPedidosFinalizados(int id) {
         ArrayList<Pedidos> lista = new ArrayList<Pedidos>();
         String query = "select * from pedidos where (estado = 'p' OR estado = 'x') AND idCliente = ?";
-        System.out.println(id+" !!!!!!!!!!!!!!!!!" );
+
         try {
             iniciarConexion();
             sentencia = conexion.prepareStatement(query);
@@ -53,7 +53,6 @@ public class PedidosDAO extends Conexion {
 
     public ArrayList<Pedidos> getPedidosPendientes(int id) {
         ArrayList<Pedidos> lista = new ArrayList<Pedidos>();
-        System.out.println(id+" !!!!!!!!!!!!!!!!!" );
         String query = "select * from pedidos where estado = 'n' AND idCliente = ?";
         try {
             iniciarConexion();
@@ -77,6 +76,26 @@ public class PedidosDAO extends Conexion {
             cerrarConexion();
         }
         return lista;
+    }
+
+    public int setNuevoPedido(int idCliente) {
+        int idPedido = -1;
+        try {
+            iniciarConexion();
+            sentencia = conexion.prepareStatement("insert into pedidos values(null, null, ?, 'n',null,null)", sentencia.RETURN_GENERATED_KEYS);
+            sentencia.setInt(1, idCliente);
+            sentencia.executeUpdate();
+            resultado = sentencia.getGeneratedKeys();
+            while (resultado.next()) {
+                idPedido = resultado.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            cerrarConexion();
+        }
+        return idPedido;
     }
 
 }

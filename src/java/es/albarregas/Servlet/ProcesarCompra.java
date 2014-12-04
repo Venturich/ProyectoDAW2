@@ -11,7 +11,14 @@
  */
 package es.albarregas.Servlet;
 
+import es.albarregas.DAO.LineasPedidosDAO;
+import es.albarregas.DAO.PedidosDAO;
+import es.albarregas.DAO.ProductosDAO;
+import es.albarregas.Modelo.Clientes;
+import es.albarregas.Modelo.Productos;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +29,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ventura
  */
-public class FinalizarCompra extends HttpServlet {
-private HttpSession sesion;
+public class ProcesarCompra extends HttpServlet {
+
+    private HttpSession sesion;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,7 +46,23 @@ private HttpSession sesion;
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+        sesion = request.getSession();
+        if (request.getParameter("boton").equals("volver")) {
+            getServletContext().getRequestDispatcher("/JSP/Usuario/MenuUsuario.jspx").forward(request, response);
+        } else if (request.getParameter("boton").equals("comprar")) {
+            int idPedido;
+            int idCliente = ((Clientes) sesion.getAttribute("cliente")).getId();
+            PedidosDAO pedDao = new PedidosDAO();
+            idPedido = pedDao.setNuevoPedido(idCliente);
+
+            String[] codigosProducto = request.getParameterValues("idProducto");
+
+            LineasPedidosDAO lpDao = new LineasPedidosDAO();
+            lpDao.addLineasPedido(codigosProducto, idPedido);
+
+            getServletContext().getRequestDispatcher("/JSP/Compra/AgregadoACarrito.jspx").forward(request, response);
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

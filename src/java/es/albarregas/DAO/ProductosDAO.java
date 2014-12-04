@@ -14,6 +14,7 @@ package es.albarregas.DAO;
 import es.albarregas.Modelo.Productos;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -47,6 +48,10 @@ public class ProductosDAO extends Conexion {
         }
 
         return lista;
+    }
+
+    public HashMap<String, Productos> getProductosSelecionados(String[] codigosProducto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

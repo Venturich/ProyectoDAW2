@@ -59,17 +59,16 @@ public class UsuariosDAO extends Conexion {
         int id = -1;
         try {
             iniciarConexion();
-            sentencia = conexion.prepareStatement("insert into usuarios ( email, clave)values( ?, AES_ENCRYPT(?, 'wololo'))");
+            sentencia = conexion.prepareStatement("insert into usuarios ( email, clave)values( ?, AES_ENCRYPT(?, 'wololo'))", sentencia.RETURN_GENERATED_KEYS);
             sentencia.setString(1, usuario.getEmail());
             sentencia.setString(2, usuario.getClave());
             sentencia.executeUpdate();
-            if (usuario.getTipoAcceso().equals("u")) {
-                sentencia = conexion.prepareStatement("select id from usuarios where email = ?");
-                sentencia.setString(1, usuario.getEmail());
-                resultado = sentencia.executeQuery();
-                resultado.next();
-                id = resultado.getInt("id");
+
+            resultado = sentencia.getGeneratedKeys();
+            while (resultado.next()) {
+                id = resultado.getInt(1);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
