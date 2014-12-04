@@ -15,9 +15,9 @@
     <html>
         <body>
             <c:forEach var="i" items="${pedidosPendientes}">
-                <h1>    <c:out value="${i.idCliente}"></c:out>     
-                    --<c:out value="${i.idPedido}"></c:out>
-                    --<c:out value="${i.fecha}"></c:out></h1>
+                <h1>   CL: <c:out value="${i.idCliente}"></c:out>     
+                    PE: <c:out value="${i.idPedido}"></c:out>
+                    </h1>
             </c:forEach>
         </body>
     </html>

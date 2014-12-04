@@ -18,7 +18,10 @@
     <html>
         <body>
             <h1>Agregado</h1>
-                
+            <c:forEach items="${carrito}" var="k">
+                <p>Se ha agregado: <c:out value="${k.denominacion}"/></p>
+            </c:forEach>
+                <a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button>Volver</button></a>
             
         </body>
             

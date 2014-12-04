@@ -52,14 +52,23 @@ public class ProcesarCompra extends HttpServlet {
         } else if (request.getParameter("boton").equals("comprar")) {
             int idPedido;
             int idCliente = ((Clientes) sesion.getAttribute("cliente")).getId();
+            /*creamos el pedido nuevo*/
             PedidosDAO pedDao = new PedidosDAO();
             idPedido = pedDao.setNuevoPedido(idCliente);
-
+            /*lo agregamos a los pendientes*/
+            pedDao = new PedidosDAO();
+            sesion.setAttribute("pedidosPendientes", pedDao.getPedidosPendientes(idCliente));
+            
             String[] codigosProducto = request.getParameterValues("idProducto");
-
+            /* cogemos los datos de la seleccion de productos */
+            ProductosDAO proDao = new ProductosDAO();
+            ArrayList<Productos> seleccion = proDao.getProductosSeleccionados(codigosProducto);
+            sesion.setAttribute("carrito", seleccion);
+            /*insertamos las lineas */
             LineasPedidosDAO lpDao = new LineasPedidosDAO();
-            lpDao.addLineasPedido(codigosProducto, idPedido);
-
+            lpDao.addLineasPedido(seleccion, idPedido);
+            
+            
             getServletContext().getRequestDispatcher("/JSP/Compra/AgregadoACarrito.jspx").forward(request, response);
 
         }
