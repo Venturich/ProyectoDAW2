@@ -17,7 +17,7 @@
     <html>
         <body>
             <h1>Comprar</h1>
-            <form action="ProcesarCompra" method="post">
+            <form action="${pageContext.request.contextPath}/ProcesarCompra" method="post">
                 <c:forEach items="${catalogo}" var="producto">
 
                     <c:if test="${producto.stock >0}">
@@ -33,6 +33,7 @@
                                 </span>
                                 <span>
                                     <fmt:formatNumber  type="currency" pattern="##.00 €" value="${producto.precio}"/>&#160;
+                                   
                                 </span>
                                 <span>
                                     <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1"/>

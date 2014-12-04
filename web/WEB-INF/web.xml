@@ -41,6 +41,10 @@
         <servlet-name>ModificarDatos</servlet-name>
         <servlet-class>es.albarregas.Servlet.ModificarDatos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcesarCompra</servlet-name>
+        <servlet-class>es.albarregas.Servlet.ProcesarCompra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ComprobarLogin</servlet-name>
         <url-pattern>/ComprobarLogin</url-pattern>
@@ -72,6 +76,10 @@
     <servlet-mapping>
         <servlet-name>ModificarDatos</servlet-name>
         <url-pattern>/ModificarDatos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarCompra</servlet-name>
+        <url-pattern>/ProcesarCompra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
