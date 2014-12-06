@@ -15,10 +15,18 @@
     <html>
         <body>
             <c:forEach var="i" items="${pedidosPendientes}">
-                <h1>   CL: <c:out value="${i.idCliente}"></c:out>     
+                <h1>   CL: <c:out value="${cliente.nombre}"></c:out>     
                     PE: <c:out value="${i.idPedido}"></c:out>
                     </h1>
             </c:forEach>
+            <c:forEach var="k" items="${carrito}">
+                <c:out value="${k.denominacion}"/><br/>
+                
+            </c:forEach>
+                <form method="post" action="${pageContext.request.contextPath}/FinalizarCompra">
+                    <button type="submit" name="boton" value="volver">volver</button>
+                    <button type="submit" name="boton" value="finalizar">finalizar</button>
+                </form>
         </body>
     </html>
 

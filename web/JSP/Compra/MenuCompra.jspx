@@ -22,9 +22,21 @@
 
                     <c:if test="${producto.stock >0}">
                         <div class="display-roducto">
+                            <c:set var="estado" value="enabled"/>
+                            <p><c:forEach items="${carrito}" var="elem">
+                                    <c:if test="${producto.id eq elem.id}">
+                                        <c:set var="estado" value="disabled"/>
+                                    </c:if>
+                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${estado eq 'disabled'}">
+                                        <input type="checkbox" value="${producto.id}" name="idProducto" disabled="disabled"/>&#160;
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="checkbox" value="${producto.id}" name="idProducto"/>&#160;
+                                    </c:otherwise>
+                                </c:choose>
 
-                            <p>
-                                <input type="checkbox" value="${producto.id}" name="idProducto"/>&#160;
                                 <span>
                                     <c:out value="${producto.denominacion}"/>&#160;
                                 </span>
@@ -33,14 +45,14 @@
                                 </span>
                                 <span>
                                     <fmt:formatNumber  type="currency" pattern="##.00 €" value="${producto.precio}"/>&#160;
-                                   
+
                                 </span>
                                 <span>
                                     <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1"/>
                                 </span>
-                                    <c:if test="${producto.stockMinimo gt producto.stock}">
-                                        <span>¡¡Ultimas unidades!!</span>
-                                    </c:if>
+                                <c:if test="${producto.stockMinimo gt producto.stock}">
+                                    <span>¡¡Ultimas unidades!!</span>
+                                </c:if>
                             </p>
                         </div>
                     </c:if>

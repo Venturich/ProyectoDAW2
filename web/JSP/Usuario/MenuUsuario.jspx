@@ -40,7 +40,7 @@
                 </ul>
             </div>
             <div class="botonera">
-                <form method="post" action="cerrarSesion">
+                <form method="post" action="${pageContext.request.contextPath}/cerrarSesion">
                     <button type="submit">Cerrar sesión</button>
                 </form>
             </div>

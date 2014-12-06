@@ -15,6 +15,7 @@ import es.albarregas.DAO.LineasPedidosDAO;
 import es.albarregas.DAO.PedidosDAO;
 import es.albarregas.DAO.ProductosDAO;
 import es.albarregas.Modelo.Clientes;
+import es.albarregas.Modelo.Pedidos;
 import es.albarregas.Modelo.Productos;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class ProcesarCompra extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PedidosDAO pedDao;
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         sesion = request.getSession();
@@ -52,23 +54,41 @@ public class ProcesarCompra extends HttpServlet {
         } else if (request.getParameter("boton").equals("comprar")) {
             int idPedido;
             int idCliente = ((Clientes) sesion.getAttribute("cliente")).getId();
-            /*creamos el pedido nuevo*/
-            PedidosDAO pedDao = new PedidosDAO();
-            idPedido = pedDao.setNuevoPedido(idCliente);
-            /*lo agregamos a los pendientes*/
-            pedDao = new PedidosDAO();
-            sesion.setAttribute("pedidosPendientes", pedDao.getPedidosPendientes(idCliente));
-            
             String[] codigosProducto = request.getParameterValues("idProducto");
-            /* cogemos los datos de la seleccion de productos */
-            ProductosDAO proDao = new ProductosDAO();
-            ArrayList<Productos> seleccion = proDao.getProductosSeleccionados(codigosProducto);
-            sesion.setAttribute("carrito", seleccion);
-            /*insertamos las lineas */
-            LineasPedidosDAO lpDao = new LineasPedidosDAO();
-            lpDao.addLineasPedido(seleccion, idPedido);
-            
-            
+            if (codigosProducto != null) {
+                ProductosDAO proDao = new ProductosDAO();
+                ArrayList<Productos> seleccion = proDao.getProductosSeleccionados(codigosProducto);
+                if (((ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes")).isEmpty()) {
+                    /*creamos el pedido nuevo*/
+                    pedDao = new PedidosDAO();
+                    idPedido = pedDao.setNuevoPedido(idCliente);
+                    /*lo agregamos a los pendientes*/
+                    sesion.setAttribute("carrito", seleccion);
+                    /*insertamos las lineas */
+                    LineasPedidosDAO lpDao = new LineasPedidosDAO();
+                    lpDao.addLineasPedido(seleccion, idPedido);
+
+                } else {
+                    LineasPedidosDAO lipeDao;
+                    ArrayList<Pedidos> pendiente = (ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes");
+                    idPedido = pendiente.get(0).getIdPedido();
+                    System.out.println("La id de pedido= " + idPedido);
+                    lipeDao = new LineasPedidosDAO();
+                    int ultimaLinea = lipeDao.getUltimaLinea(idPedido);
+                    lipeDao = new LineasPedidosDAO();
+                    lipeDao.continuePedido(idPedido, seleccion, ultimaLinea);
+                    ArrayList<Productos> carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
+                    carrito.addAll(seleccion);
+                    sesion.setAttribute("carrito", carrito);
+
+                }
+                sesion.setAttribute("agregado", true);
+                pedDao = new PedidosDAO();
+                sesion.setAttribute("pedidosPendientes", pedDao.getPedidosPendientes(idCliente));
+
+                /* cogemos los datos de la seleccion de productos */
+            }
+
             getServletContext().getRequestDispatcher("/JSP/Compra/AgregadoACarrito.jspx").forward(request, response);
 
         }

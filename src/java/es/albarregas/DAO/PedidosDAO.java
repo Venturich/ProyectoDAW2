@@ -98,4 +98,22 @@ public class PedidosDAO extends Conexion {
         return idPedido;
     }
 
+    public void finalizarPedido(int idPedido, double total, String estado) {
+        String query = "update pedidos set fecha=CURRENT_TIMESTAMP, estado= ?, baseImporte=?, iva=21.00 where idPedido=?";
+
+        try {
+            iniciarConexion();
+            sentencia = conexion.prepareStatement(query);
+            sentencia.setString(1, estado);
+            sentencia.setDouble(2, total);
+            sentencia.setInt(3, idPedido);
+            sentencia.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            cerrarConexion();
+        }
+    }
+
 }

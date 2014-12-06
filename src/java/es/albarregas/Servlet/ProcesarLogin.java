@@ -13,9 +13,11 @@ package es.albarregas.Servlet;
 
 import es.albarregas.DAO.ClientesDAO;
 import es.albarregas.DAO.PedidosDAO;
+import es.albarregas.DAO.ProductosDAO;
 import es.albarregas.DAO.UsuariosDAO;
 import es.albarregas.Modelo.Clientes;
 import es.albarregas.Modelo.Pedidos;
+import es.albarregas.Modelo.Productos;
 import es.albarregas.Modelo.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -87,9 +89,14 @@ public class ProcesarLogin extends HttpServlet {
                             }
                             PedidosDAO pedidosFin = new PedidosDAO();
                             PedidosDAO pedidosPen = new PedidosDAO();
-
+                            
                             ArrayList<Pedidos> pedidosFinalizados = pedidosFin.getPedidosFinalizados(test.getId());
                             ArrayList<Pedidos> pedidosPendientes = pedidosPen.getPedidosPendientes(test.getId());
+                            if(!pedidosPendientes.isEmpty()){
+                                ProductosDAO proCarrito = new ProductosDAO();
+                            ArrayList<Productos> carrito =  proCarrito.getProductosDePedido(pedidosPendientes.get(0).getIdPedido());
+                            sesion.setAttribute("carrito", carrito);
+                            }
                             sesion.setAttribute("pedidosFinalizados", pedidosFinalizados);
                             sesion.setAttribute("pedidosPendientes", pedidosPendientes);
                         } catch (IllegalAccessException ex) {

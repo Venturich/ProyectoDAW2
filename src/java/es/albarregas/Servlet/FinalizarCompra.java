@@ -11,7 +11,14 @@
  */
 package es.albarregas.Servlet;
 
+import es.albarregas.Controlador.TotalPedido;
+import es.albarregas.DAO.PedidosDAO;
+import es.albarregas.DAO.ProductosDAO;
+import es.albarregas.Modelo.Pedidos;
+import es.albarregas.Modelo.Productos;
+import es.albarregas.Modelo.Usuarios;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +30,9 @@ import javax.servlet.http.HttpSession;
  * @author Ventura
  */
 public class FinalizarCompra extends HttpServlet {
-private HttpSession sesion;
+
+    private HttpSession sesion;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,7 +46,32 @@ private HttpSession sesion;
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+        sesion = request.getSession();
+        PedidosDAO pedDao;
+        ProductosDAO proDao;
+        if (request.getParameter("boton").equals("finalizar")) {
+            ArrayList<Pedidos> pendiente = ((ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes"));
+            int idPedido = pendiente.get(0).getIdPedido();
+            double total = TotalPedido.getTotal(((ArrayList<Productos>) sesion.getAttribute("carrito")));
+            proDao = new ProductosDAO();    
+            
+            String estado=proDao.updateStock(((ArrayList<Productos>) sesion.getAttribute("carrito")));  
+            pedDao = new PedidosDAO();
+            pedDao.finalizarPedido(idPedido, total, estado);
+            
+            pendiente.clear();
+            sesion.setAttribute("pedidosPendientes", pendiente);
+            ArrayList<Productos> carrito = ((ArrayList<Productos>) sesion.getAttribute("carrito"));
+            carrito.clear();
+            sesion.setAttribute("carrito", carrito);
+            pedDao = new PedidosDAO();
+            Usuarios user = (Usuarios)sesion.getAttribute("usuario");
+            ArrayList<Pedidos> finalizados = pedDao.getPedidosFinalizados(user.getId());
+            sesion.setAttribute("pedidosFinalizados", finalizados);
+
+        } else {
+            getServletContext().getRequestDispatcher("/JSP/Usuario/MenuUsuario.jspx").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

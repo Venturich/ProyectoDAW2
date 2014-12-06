@@ -14,17 +14,19 @@
                 doctype-root-element="html"
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
-    
+
     <html>
         <body>
             <h1>Agregado</h1>
-            <c:forEach items="${carrito}" var="k">
-                <p>Se ha agregado: <c:out value="${k.denominacion}"/></p>
-            </c:forEach>
-                <a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button>Volver</button></a>
-            
+            <c:if test="${agregado == true}">
+                <c:forEach items="${carrito}" var="k">
+                    <p>El carrito contiene: <c:out value="${k.denominacion}"/>: 1 ud</p>
+                </c:forEach>
+            </c:if>
+            <a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button>Volver</button></a>
+
         </body>
-            
+
     </html>
 
 </jsp:root>
