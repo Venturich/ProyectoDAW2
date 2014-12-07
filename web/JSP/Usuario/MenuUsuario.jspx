@@ -28,7 +28,7 @@
 
                     <c:if test="${not empty sessionScope.pedidosPendientes}">
                         <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Compra/Carrito.jspx">Carrito actual</a></li>
-                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/FinalizarCompra">Finalizar compra</a></li>
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/FinalizarCompra?boton=finalizar">Finalizar compra</a></li>
 
                     </c:if>
                     <c:if test="${not empty sessionScope.pedidosFinalizados}">

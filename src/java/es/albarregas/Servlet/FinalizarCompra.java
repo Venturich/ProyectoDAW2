@@ -58,7 +58,7 @@ public class FinalizarCompra extends HttpServlet {
             String estado=proDao.updateStock(((ArrayList<Productos>) sesion.getAttribute("carrito")));  
             pedDao = new PedidosDAO();
             pedDao.finalizarPedido(idPedido, total, estado);
-            
+
             pendiente.clear();
             sesion.setAttribute("pedidosPendientes", pendiente);
             ArrayList<Productos> carrito = ((ArrayList<Productos>) sesion.getAttribute("carrito"));
@@ -68,6 +68,7 @@ public class FinalizarCompra extends HttpServlet {
             Usuarios user = (Usuarios)sesion.getAttribute("usuario");
             ArrayList<Pedidos> finalizados = pedDao.getPedidosFinalizados(user.getId());
             sesion.setAttribute("pedidosFinalizados", finalizados);
+            getServletContext().getRequestDispatcher("/JSP/Compra/Factura.jspx").forward(request, response);
 
         } else {
             getServletContext().getRequestDispatcher("/JSP/Usuario/MenuUsuario.jspx").forward(request, response);
