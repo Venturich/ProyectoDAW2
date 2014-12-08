@@ -89,13 +89,13 @@ public class ProcesarLogin extends HttpServlet {
                             }
                             PedidosDAO pedidosFin = new PedidosDAO();
                             PedidosDAO pedidosPen = new PedidosDAO();
-                            
+
                             ArrayList<Pedidos> pedidosFinalizados = pedidosFin.getPedidosFinalizados(test.getId());
                             ArrayList<Pedidos> pedidosPendientes = pedidosPen.getPedidosPendientes(test.getId());
-                            if(!pedidosPendientes.isEmpty()){
+                            if (!pedidosPendientes.isEmpty()) {
                                 ProductosDAO proCarrito = new ProductosDAO();
-                            ArrayList<Productos> carrito =  proCarrito.getProductosDePedido(pedidosPendientes.get(0).getIdPedido());
-                            sesion.setAttribute("carrito", carrito);
+                                ArrayList<Productos> carrito = proCarrito.getProductosDePedido(pedidosPendientes.get(0).getIdPedido());
+                                sesion.setAttribute("carrito", carrito);
                             }
                             sesion.setAttribute("pedidosFinalizados", pedidosFinalizados);
                             sesion.setAttribute("pedidosPendientes", pedidosPendientes);
@@ -110,6 +110,10 @@ public class ProcesarLogin extends HttpServlet {
 
                     } else if (test.getTipoAcceso().equals("a")) {
                         sesion.setAttribute("listaUsuarios", lista);
+                        ProductosDAO proDao = new ProductosDAO();
+                        ArrayList<Productos> catalogo = new ArrayList<Productos>();
+                        catalogo = proDao.getListaProductos();
+                        sesion.setAttribute("catalogo", catalogo);
                         getServletContext().getRequestDispatcher("/JSP/Administracion/MenuAdmin.jspx").forward(request, response);
                         return;
 
@@ -118,7 +122,7 @@ public class ProcesarLogin extends HttpServlet {
                 } else if (test.getEmail().equals(dato.getEmail())
                         && test.getClave().equals(dato.getClave()) && test.getBloqueado().equals("s")) {
                     sesion.setAttribute("error", "usuario bloqueado");
-                }else{
+                } else {
                     sesion.setAttribute("error", "usuario o clave incorrectos");
                 }
             }

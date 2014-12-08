@@ -156,4 +156,33 @@ public class ProductosDAO extends Conexion {
         
     }
 
+    public ArrayList<Productos> getListaProductos() {
+        ArrayList<Productos> lista = new ArrayList<Productos>();
+        try {
+
+            iniciarConexion();
+            sentencia = conexion.prepareStatement("select * from productos ");
+            resultado = sentencia.executeQuery();
+
+            while (resultado.next()) {
+                Productos pro = new Productos();
+                pro.setId(resultado.getString("id"));
+                pro.setDenominacion(resultado.getString("denominacion"));
+                pro.setDescripcion(resultado.getString("descripcion"));
+                pro.setPrecio(resultado.getDouble("precio"));
+                pro.setStock(resultado.getInt("stock"));
+                pro.setStockMinimo(resultado.getInt("stockMinimo"));
+                pro.setBloqueado(resultado.getString("bloqueado"));
+                lista.add(pro);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+
+        return lista;
+    }
+
 }

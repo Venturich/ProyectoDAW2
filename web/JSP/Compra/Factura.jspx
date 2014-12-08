@@ -14,11 +14,65 @@
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
 
 
-    <!-- any content can be specified here, e.g.: -->
+    
     <html>
         <body>
-            <h1>FActura</h1>
+            <h1>Factura</h1>
+            <table>
+                <tr>
+                    <th colspan="2">Pedido #<c:out value="${factura.idPedido}"/></th>
+                    <th colspan="4">Tienda online</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Producto</td>
+                    <td colspan="4"></td>
+                    <td>Unidades</td>
+                    <td>Precio</td>
+                </tr>
+                <c:forEach items="${carrito}" var="c">
+                    <tr>
+                        <td><c:out value="${c.id}"/></td>
+                        <td colspan="4"><c:out value="${c.denominacion}"/></td>
+                        <td>1</td>
+                        <td><c:out value="${c.precio}"/></td>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <td colspan="3"><c:choose>
+                            <c:when test="${factura.estado eq 'p'}">
+                                <span class="pendiente">No hay stock de alguno de los productos actualmente, su pedido será enviado lo antes posible </span>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="listo">Listo para enviar en 2-3 días</span>
+                            </c:otherwise>
+                        </c:choose>                        
+                    </td>
+                    <td colspan="2">
+                        Base Importe:
+                    </td>
+                    <td>
+                        <c:out value="${factura.baseImporte}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td colspan="2">IVA</td>
+                    <td>
+                        <c:out value="${factura.iva}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td colspan="2">TOTAL</td>
+                    <td>
+                        <c:out value="${factura.baseImporte}"/>
+                    </td>
+                </tr>
+            </table>
             <a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button>Volver</button></a>
+            <button onclick="window.print()">Imprimir Factura</button>
         </body> </html>
 
 </jsp:root>
+

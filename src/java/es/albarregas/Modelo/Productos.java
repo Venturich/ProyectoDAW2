@@ -24,7 +24,7 @@ public class Productos implements Serializable {
     private double precio;
     private int stock;
     private int stockMinimo;
-    private char bloqueado;
+    private String bloqueado;
 
     public Productos() {
     }
@@ -77,11 +77,11 @@ public class Productos implements Serializable {
         this.stockMinimo = stockMinimo;
     }
 
-    public char getBloqueado() {
+    public String getBloqueado() {
         return bloqueado;
     }
 
-    public void setBloqueado(char bloqueado) {
+    public void setBloqueado(String bloqueado) {
         this.bloqueado = bloqueado;
     }
     

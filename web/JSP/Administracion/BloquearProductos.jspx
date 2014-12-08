@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Document   : bloquear
-    Created on : 01-dic-2014, 19:09:33
+    Document   : BloquearProductos
+    Created on : 08-dic-2014, 9:55:11
     Author     : Ventura
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
@@ -12,20 +12,21 @@
                 doctype-root-element="html"
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+
     <html>
         <body>
-            <form action="${pageContext.request.contextPath}/BloquearUsuarios" method="post">
+            <form action="${pageContext.request.contextPath}/BloquearProductos" method="post">
                 <table>
                     <tr>
-                        <th>#Usuario</th>
-                        <th>Email</th>
+                        <th>Producto</th>
+                        <th>Denominacion</th>
                         <th>Bloqueado</th>
-                        <th>Tipo</th>
+                        <th>Precio</th>
                     </tr>
-                    <c:forEach var="i" items="${listaUsuarios}" >
+                    <c:forEach var="i" items="${catalogo}" >
                         <tr>
                             <td><c:out value="${i.id}"/></td>
-                            <td><c:out value="${i.email}"/></td>
+                            <td><c:out value="${i.denominacion}"/></td>
                             <td>
                                 <select name="${i.id}">
                                     <c:choose>
@@ -40,26 +41,15 @@
                                     </c:choose>
                                 </select>
                             </td>
-                            <td>
-                                <select name="${i.id}">
-                                    <c:choose>
-                                        <c:when test="${i.tipoAcceso eq 'a' }">
-                                            <option value="Administrador" selected="selected">Administrador</option>
-                                            <option value="Usuario">Usuario</option>
-                                        </c:when> 
-                                        <c:otherwise>
-                                            <option value="Administrador">Administrador</option>
-                                            <option value="Usuario" selected="selected">Usuario</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </select>
-                            </td>
+                            <td><c:out value="${i.precio}"/></td>
                         </tr>
                     </c:forEach>
                 </table>
-               <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdministracion.jspx"><button>Volver</button></a>
-                <button type="submit" value="bloquear" name="boton"></button>
+                <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdministracion.jspx"><button>Volver</button></a>
+                <button type="submit">Actualizar</button>
             </form>
         </body>
+
     </html>
+
 </jsp:root>

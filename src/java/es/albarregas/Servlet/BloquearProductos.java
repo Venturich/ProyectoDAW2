@@ -11,27 +11,27 @@
  */
 package es.albarregas.Servlet;
 
-import es.albarregas.Controlador.TotalPedido;
-import es.albarregas.DAO.PedidosDAO;
-import es.albarregas.DAO.ProductosDAO;
-import es.albarregas.Modelo.Pedidos;
 import es.albarregas.Modelo.Productos;
-import es.albarregas.Modelo.Usuarios;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  *
  * @author Ventura
  */
-public class FinalizarCompra extends HttpServlet {
+public class BloquearProductos extends HttpServlet {
 
-    private HttpSession sesion;
+    HttpSession sesion;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,35 +47,22 @@ public class FinalizarCompra extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         sesion = request.getSession();
-        PedidosDAO pedDao;
-        ProductosDAO proDao;
-        if (request.getParameter("boton").equals("finalizar")) {
-            ArrayList<Pedidos> pendiente = ((ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes"));
-            if (!pendiente.isEmpty()) {
-                int idPedido = pendiente.get(0).getIdPedido();
-                double total = TotalPedido.getTotal(((ArrayList<Productos>) sesion.getAttribute("carrito")));
-                proDao = new ProductosDAO();
 
-                String estado = proDao.updateStock(((ArrayList<Productos>) sesion.getAttribute("carrito")));
-                pedDao = new PedidosDAO();
-                pedDao.finalizarPedido(idPedido, total, estado);
+        Map<String, String[]> entrada = request.getParameterMap();
+        //ArrayList<Productos> productos = (ArrayList<Productos>) sesion.getAttribute("catalogo");
+        Enumeration<String> nombres = request.getParameterNames();
 
-                pendiente.clear();
-                sesion.setAttribute("pedidosPendientes", pendiente);
-            }
-            ArrayList<Productos> carrito = ((ArrayList<Productos>) sesion.getAttribute("carrito"));
-            //carrito.clear();
-            //sesion.setAttribute("carrito", carrito);
-            pedDao = new PedidosDAO();
-            Usuarios user = (Usuarios) sesion.getAttribute("usuario");
-            ArrayList<Pedidos> finalizados = pedDao.getPedidosFinalizados(user.getId());
-            sesion.setAttribute("pedidosFinalizados", finalizados);
-            sesion.setAttribute("factura", finalizados.get(finalizados.size() - 1));
-            getServletContext().getRequestDispatcher("/JSP/Compra/Factura.jspx").forward(request, response);
-
-        } else {
-            getServletContext().getRequestDispatcher("/JSP/Usuario/MenuUsuario.jspx").forward(request, response);
+        ArrayList<Productos> modificar = new ArrayList<Productos>();
+        Productos pro;
+        while (nombres.hasMoreElements()) {
+            pro = new Productos();
+            String key = nombres.nextElement();
+            pro.setId(key);
+            pro.setBloqueado(entrada.get(key)[0]);
+            modificar.add(pro);
         }
+        
+        getServletContext().getRequestDispatcher("/JSP/Administracion/MenuAdmin.jspx").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
