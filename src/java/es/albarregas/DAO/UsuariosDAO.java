@@ -78,12 +78,21 @@ public class UsuariosDAO extends Conexion {
         return id;
     }
 
-    public void bloquearUsuario(Usuarios usuario) {
+    public void updateUsuarios(ArrayList<Usuarios> usuarios) {
         try {
             iniciarConexion();
-            sentencia = conexion.prepareStatement("update usuarios set bloqueado = 's' where email = ?");
-            sentencia.setString(1, usuario.getEmail());
-            sentencia.executeUpdate();
+            conexion.setAutoCommit(false);
+            sentencia = conexion.prepareStatement("update usuarios set bloqueado = ? where id = ?");
+
+            for (Usuarios u : usuarios) {
+                sentencia.setString(1, u.getBloqueado());
+                sentencia.setInt(2, u.getId());
+                sentencia.addBatch();
+            }
+            sentencia.executeBatch();
+
+            conexion.commit();
+            conexion.setAutoCommit(true);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,4 +100,5 @@ public class UsuariosDAO extends Conexion {
             cerrarConexion();
         }
     }
+
 }

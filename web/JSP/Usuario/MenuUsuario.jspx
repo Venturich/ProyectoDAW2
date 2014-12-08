@@ -16,6 +16,10 @@
 
     <!-- any content can be specified here, e.g.: -->
     <html>
+         <head>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
+        </head>
         <body>
             <div id="menu-usuario">
                 <h1>Bienvenido <c:out value="${cliente.nombre}"/>&#160;<c:out value="${cliente.apellidos}"/></h1>

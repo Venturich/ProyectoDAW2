@@ -49,6 +49,14 @@
         <servlet-name>BloquearProductos</servlet-name>
         <servlet-class>es.albarregas.Servlet.BloquearProductos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecargarListasAdmin</servlet-name>
+        <servlet-class>es.albarregas.Servlet.RecargarListasAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BloquearUsuarios</servlet-name>
+        <servlet-class>es.albarregas.Servlet.BloquearUsuarios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ComprobarLogin</servlet-name>
         <url-pattern>/ComprobarLogin</url-pattern>
@@ -88,6 +96,14 @@
     <servlet-mapping>
         <servlet-name>BloquearProductos</servlet-name>
         <url-pattern>/BloquearProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecargarListasAdmin</servlet-name>
+        <url-pattern>/RecargarListasAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BloquearUsuarios</servlet-name>
+        <url-pattern>/BloquearUsuarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

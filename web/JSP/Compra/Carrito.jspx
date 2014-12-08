@@ -13,6 +13,10 @@
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
     <html>
+        <head>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
+        </head>
         <body>
             <c:forEach var="i" items="${pedidosPendientes}">
                 <h1>   CL: <c:out value="${cliente.nombre}"></c:out>     

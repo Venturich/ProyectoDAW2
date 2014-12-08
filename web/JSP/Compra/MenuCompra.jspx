@@ -15,6 +15,10 @@
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
     <html>
+        <head>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
+        </head>
         <body>
             <h1>Comprar</h1>
             <form action="${pageContext.request.contextPath}/ProcesarCompra" method="post">

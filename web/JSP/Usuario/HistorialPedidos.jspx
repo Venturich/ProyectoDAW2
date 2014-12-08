@@ -16,9 +16,11 @@
 
     <html>
         <head>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
             <script type="text/javascript">
-                function mostrarPedido(idpedido){
-                    
+                function mostrarPedido(idpedido) {
+
                 }
             </script>
         </head>
@@ -27,14 +29,14 @@
             <c:forEach items="${pedidosFinalizados}" var="i">
                 <div class="historial-pedido">
                     <p>Pedidos número: <c:out value="${i.idPedido}"/> 
-                    Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/> 
-                    Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
+                        Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/> 
+                        Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
                     <button onclick="mostrarPedido(${i.idPedido})">Ver pedido</button>
                 </div>
 
             </c:forEach>
             <div id="contenedor-pedidos">
-                
+
             </div>
 
         </body>

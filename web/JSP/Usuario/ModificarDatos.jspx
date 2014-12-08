@@ -14,6 +14,10 @@
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
     <html>
+         <head>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
+        </head>
         <body>
             <form method="post" action="${pageContext.request.contextPath}/ModificarDatos">
                 <span class="registro-etiqueta">Nombre:</span> <input type="text" name="nombre" class="registro-entrada" value="${cliente.nombre}"/><br/>

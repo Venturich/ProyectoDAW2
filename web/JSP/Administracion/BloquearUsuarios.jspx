@@ -13,6 +13,10 @@
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
     <html>
+         <head>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
+            <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
+        </head>
         <body>
             <form action="${pageContext.request.contextPath}/BloquearUsuarios" method="post">
                 <table>
@@ -41,24 +45,22 @@
                                 </select>
                             </td>
                             <td>
-                                <select name="${i.id}">
-                                    <c:choose>
-                                        <c:when test="${i.tipoAcceso eq 'a' }">
-                                            <option value="Administrador" selected="selected">Administrador</option>
-                                            <option value="Usuario">Usuario</option>
-                                        </c:when> 
-                                        <c:otherwise>
-                                            <option value="Administrador">Administrador</option>
-                                            <option value="Usuario" selected="selected">Usuario</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </select>
+
+                                <c:choose>
+                                    <c:when test="${i.tipoAcceso eq 'a' }">
+                                        <span>Administrador</span>
+                                    </c:when> 
+                                    <c:otherwise>
+                                        <span>Usuario</span>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </td>
                         </tr>
                     </c:forEach>
                 </table>
-               <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdministracion.jspx"><button>Volver</button></a>
-                <button type="submit" value="bloquear" name="boton"></button>
+                <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdmin.jspx"><button type="button">Volver</button></a>
+                <button type="submit">Actualizar</button>
             </form>
         </body>
     </html>

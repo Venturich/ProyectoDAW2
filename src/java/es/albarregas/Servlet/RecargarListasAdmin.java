@@ -12,27 +12,25 @@
 package es.albarregas.Servlet;
 
 import es.albarregas.DAO.ProductosDAO;
+import es.albarregas.DAO.UsuariosDAO;
 import es.albarregas.Modelo.Productos;
+import es.albarregas.Modelo.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.collections.CollectionUtils;
 
 /**
  *
  * @author Ventura
  */
-public class BloquearProductos extends HttpServlet {
+public class RecargarListasAdmin extends HttpServlet {
 
-    HttpSession sesion;
+    private HttpSession sesion;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,38 +43,17 @@ public class BloquearProductos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        sesion = request.getSession();
-
-        Map<String, String[]> entrada = request.getParameterMap();
-        ArrayList<Productos> productos = (ArrayList<Productos>) sesion.getAttribute("catalogo");
-        Enumeration<String> nombres = request.getParameterNames();
-
-        ArrayList<Productos> modificar = new ArrayList<Productos>();
-        Productos pro;
-
-        while (nombres.hasMoreElements()) {
-            pro = new Productos();
-            String key = nombres.nextElement();
-            for (Productos p : productos) {
-                if (!entrada.get(key)[0].equals(p.getBloqueado()) && key.equals(p.getId())) {
-                    pro.setId(key);
-                    pro.setBloqueado(entrada.get(key)[0]);
-                    modificar.add(pro);
-                    System.out.println("Modificar: "+pro.getBloqueado()+" - "+pro.getId());
-                }
-            }
-        }
+        response.setCharacterEncoding("UTF-8");
+        sesion=request.getSession();
+        UsuariosDAO usersDAO = new UsuariosDAO();
+        ArrayList<Usuarios> lista = usersDAO.getUsuarios();
+        sesion.setAttribute("listaUsuarios", lista);
         ProductosDAO proDao = new ProductosDAO();
-        int lineasActualizadas = proDao.updateEstados(modificar);
-        if (lineasActualizadas == modificar.size()) {
-            sesion.setAttribute("mensaje","Todos los productos actualizados");
-        } else {
-           sesion.setAttribute("mensaje","Algunos de los productos no se han actualizado, al estar en pedidos pendientes");
-        }
-         getServletContext().getRequestDispatcher("/JSP/Administracion/AvisoBloqueo.jspx").forward(request, response);
-        
+        ArrayList<Productos> catalogo = new ArrayList<Productos>();
+        catalogo = proDao.getListaProductos();
+        sesion.setAttribute("catalogo", catalogo);
+        getServletContext().getRequestDispatcher("/JSP/Administracion/MenuAdmin.jspx").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
