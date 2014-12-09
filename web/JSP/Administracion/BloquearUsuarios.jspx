@@ -13,55 +13,57 @@
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
     <html>
-         <head>
+        <head>
             <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
-            <form action="${pageContext.request.contextPath}/BloquearUsuarios" method="post">
-                <table>
-                    <tr>
-                        <th>#Usuario</th>
-                        <th>Email</th>
-                        <th>Bloqueado</th>
-                        <th>Tipo</th>
-                    </tr>
-                    <c:forEach var="i" items="${listaUsuarios}" >
+            <div class="cuerpo">
+                <form action="${pageContext.request.contextPath}/BloquearUsuarios" method="post">
+                    <table>
                         <tr>
-                            <td><c:out value="${i.id}"/></td>
-                            <td><c:out value="${i.email}"/></td>
-                            <td>
-                                <select name="${i.id}">
+                            <th>#Usuario</th>
+                            <th>Email</th>
+                            <th>Bloqueado</th>
+                            <th>Tipo</th>
+                        </tr>
+                        <c:forEach var="i" items="${listaUsuarios}" >
+                            <tr>
+                                <td><c:out value="${i.id}"/></td>
+                                <td><c:out value="${i.email}"/></td>
+                                <td>
+                                    <select name="${i.id}">
+                                        <c:choose>
+                                            <c:when test="${i.bloqueado eq 's' }">
+                                                <option value="s" selected="selected">Si</option>
+                                                <option value="n">No</option>
+                                            </c:when> 
+                                            <c:otherwise>
+                                                <option value="s">Si</option>
+                                                <option value="n" selected="selected">No</option>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </select>
+                                </td>
+                                <td>
+
                                     <c:choose>
-                                        <c:when test="${i.bloqueado eq 's' }">
-                                            <option value="s" selected="selected">Si</option>
-                                            <option value="n">No</option>
+                                        <c:when test="${i.tipoAcceso eq 'a' }">
+                                            <span>Administrador</span>
                                         </c:when> 
                                         <c:otherwise>
-                                            <option value="s">Si</option>
-                                            <option value="n" selected="selected">No</option>
+                                            <span>Usuario</span>
                                         </c:otherwise>
                                     </c:choose>
-                                </select>
-                            </td>
-                            <td>
 
-                                <c:choose>
-                                    <c:when test="${i.tipoAcceso eq 'a' }">
-                                        <span>Administrador</span>
-                                    </c:when> 
-                                    <c:otherwise>
-                                        <span>Usuario</span>
-                                    </c:otherwise>
-                                </c:choose>
-
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-                <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdmin.jspx"><button type="button">Volver</button></a>
-                <button type="submit">Actualizar</button>
-            </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                    <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdmin.jspx"><button type="button">Volver</button></a>
+                    <button type="submit">Actualizar</button>
+                </form>
+            </div>
         </body>
     </html>
 </jsp:root>

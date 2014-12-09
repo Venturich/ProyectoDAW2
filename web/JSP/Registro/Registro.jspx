@@ -19,29 +19,44 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head> 
         <body>
-            <h1>
-                <c:out value="${registro}"/>
-            </h1>
-            <form method="post" action="${pageContext.request.contextPath}/ComprobarRegistro">
-                <span class="registro-etiqueta">Usuario:</span> <input type="email" name="email" class="registro-entrada"/><br/>
-                <span class="registro-etiqueta">Contraseña:</span> <input type="password" name="clave" class="registro-entrada"/><br/>
-                <span class="registro-etiqueta">Confirma contraseña:</span> <input type="password" name="confClave" class="registro-entrada"/><br/>
-                <span class="registro-etiqueta">Nombre:</span> <input type="text" name="nombre" class="registro-entrada"/><br/>
-                <span class="registro-etiqueta">Apellidos:</span> <input type="text" name="apellidos" class="registro-entrada"/><br/>
-                <span class="registro-etiqueta">NIF:</span><input type="text" maxlength="9" size="9" name="nif_nie" class="registro-entrada"/><br/>
-                <span class="registro-etiqueta">Fecha Nacimiento:</span> <input type="date" name="fechaNacimiento" class="registro-entrada"/><br/>
-                <span class="registro-etiqueta">Sexo:</span> <input type="radio" name="sexo" value="h" class="registro-entrada calendario"/>Hombre 
-                <input type="hidden" name="tipoAcceso" value="u"/>
-                <input type="radio" name="sexo" value="m"/>Mujer<br/>
-                <span class="registro-etiqueta">Direccion:</span> <input type="text" name="direccion" class="registro-entrada"/><br/>
-                <button type="reset">limpiar</button>
-                <button type="submit" name="registrar" value="registrar"> Completar registro </button>
-            </form>
-            <form method="post" action="${pageContext.request.contextPath}/index.jspx">
-                <button>volver</button>
-            </form>
-        </body></html>
-
-
-
+            <div class="main">
+                <header>
+                    <div class="cabecera">
+                        <h1>Mundo Vinilo</h1>
+                        <h2>Lo mejor en siete púlgadas</h2>
+                    </div>
+                    <div class="menu-lateral-contenedor">
+                        <ul class="menu-lateral">
+                            <li class="menu-opcion"><a>Inicio</a></li>
+                            <li class="menu-opcion"><a>Player</a></li>
+                            <li class="menu-opcion"><a>Diviertete</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="cuerpo">
+                    <h1>
+                        <c:out value="${registro}"/>
+                    </h1>
+                    <form method="post" action="${pageContext.request.contextPath}/ComprobarRegistro">
+                        <span class="registro-etiqueta">Usuario:</span> <input type="email" name="email" class="registro-entrada"/><br/>
+                        <span class="registro-etiqueta">Contraseña:</span> <input type="password" name="clave" class="registro-entrada"/><br/>
+                        <span class="registro-etiqueta">Confirma contraseña:</span> <input type="password" name="confClave" class="registro-entrada"/><br/>
+                        <span class="registro-etiqueta">Nombre:</span> <input type="text" name="nombre" class="registro-entrada"/><br/>
+                        <span class="registro-etiqueta">Apellidos:</span> <input type="text" name="apellidos" class="registro-entrada"/><br/>
+                        <span class="registro-etiqueta">NIF:</span><input type="text" maxlength="9" size="9" name="nif_nie" class="registro-entrada"/><br/>
+                        <span class="registro-etiqueta">Fecha Nacimiento:</span> <input type="date" name="fechaNacimiento" class="registro-entrada"/><br/>
+                        <span class="registro-etiqueta">Sexo:</span> <input type="radio" name="sexo" value="h" class="registro-entrada calendario"/>Hombre 
+                        <input type="hidden" name="tipoAcceso" value="u"/>
+                        <input type="radio" name="sexo" value="m"/>Mujer<br/>
+                        <span class="registro-etiqueta">Direccion:</span> <input type="text" name="direccion" class="registro-entrada"/><br/>
+                        <button type="reset">limpiar</button>
+                        <button type="submit" name="registrar" value="registrar"> Completar registro </button>
+                    </form>
+                    <form method="post" action="${pageContext.request.contextPath}/index.jspx">
+                        <button>volver</button>
+                    </form>
+                </div>
+            </div>
+        </body>
+    </html>
 </jsp:root>

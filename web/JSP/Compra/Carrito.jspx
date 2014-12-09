@@ -18,19 +18,36 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
-            <c:forEach var="i" items="${pedidosPendientes}">
-                <h1>   CL: <c:out value="${cliente.nombre}"></c:out>     
-                    PE: <c:out value="${i.idPedido}"></c:out>
-                    </h1>
-            </c:forEach>
-            <c:forEach var="k" items="${carrito}">
-                <c:out value="${k.denominacion}"/><br/>
-                
-            </c:forEach>
-                <form method="post" action="${pageContext.request.contextPath}/FinalizarCompra">
-                    <button type="submit" name="boton" value="volver">volver</button>
-                    <button type="submit" name="boton" value="finalizar">finalizar</button>
-                </form>
+            <div class="main">
+                <header>
+                    <div class="cabecera">
+                        <h1>Mundo Vinilo</h1>
+                        <h2>Lo mejor en siete púlgadas</h2>
+                    </div>
+                    <div class="menu-lateral-contenedor">
+                        <ul class="menu-lateral">
+                            <li class="menu-opcion"><a>Inicio</a></li>
+                            <li class="menu-opcion"><a>Player</a></li>
+                            <li class="menu-opcion"><a>Diviertete</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="cuerpo">
+                    <c:forEach var="i" items="${pedidosPendientes}">
+                        <h1>   CL: <c:out value="${cliente.nombre}"></c:out>     
+                            PE: <c:out value="${i.idPedido}"></c:out>
+                            </h1>
+                    </c:forEach>
+                    <c:forEach var="k" items="${carrito}">
+                        <c:out value="${k.denominacion}"/><br/>
+
+                    </c:forEach>
+                    <form method="post" action="${pageContext.request.contextPath}/FinalizarCompra">
+                        <button type="submit" name="boton" value="volver" class="login-boton">volver</button>
+                        <button type="submit" name="boton" value="finalizar" class="login-boton">finalizar</button>
+                    </form>
+                </div>
+            </div>
         </body>
     </html>
 

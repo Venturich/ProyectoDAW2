@@ -16,35 +16,50 @@
 
     <!-- any content can be specified here, e.g.: -->
     <html>
-         <head>
+        <head>
             <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
-            <div id="menu-usuario">
-                <h1>Bienvenido <c:out value="${cliente.nombre}"/>&#160;<c:out value="${cliente.apellidos}"/></h1>
+            <div class="main">
+                <header>
+                    <div class="cabecera">
+                        <h1>Mundo Vinilo</h1>
+                        <h2>Lo mejor en siete púlgadas</h2>
+                    </div>
+                    <div class="menu-lateral-contenedor">
+                        <ul class="menu-lateral">
+                            <li class="menu-opcion"><a>Inicio</a></li>
+                            <li class="menu-opcion"><a>Player</a></li>
+                            <li class="menu-opcion"><a>Diviertete</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div id="menu-usuario">
+                    <h1>Bienvenido <c:out value="${cliente.nombre}"/>&#160;<c:out value="${cliente.apellidos}"/></h1>
 
-                <ul class="menu-lista">
-                    <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Usuario/ModificarDatos.jspx">Modificar datos personales</a>
-                    </li>
-                    <li class="menu-linea"><a href="${pageContext.request.contextPath}/MostrarProductos">Realizar compra</a>
-                    </li>
-                    <c:if test="${not empty sessionScope.pedidosPendientes}">
-                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Compra/Carrito.jspx">Carrito actual</a>
+                    <ul class="menu-lista">
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Usuario/ModificarDatos.jspx">Modificar datos personales</a>
+                        </li>
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/MostrarProductos">Realizar compra</a>
+                        </li>
+                        <c:if test="${not empty sessionScope.pedidosPendientes}">
+                            <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Compra/Carrito.jspx">Carrito actual</a>
                             </li>
-                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/FinalizarCompra?boton=finalizar">Finalizar compra</a>
-                        </li>
-                    </c:if>
-                    <c:if test="${not empty sessionScope.pedidosFinalizados}">
-                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Usuario/HistorialPedidos.jspx">Historial de pedidos</a>
-                        </li>
-                    </c:if>
-                </ul>
-            </div>
-            <div class="botonera">
-                <form method="post" action="${pageContext.request.contextPath}/cerrarSesion">
-                    <button type="submit">Cerrar sesión</button>
-                </form>
+                            <li class="menu-linea"><a href="${pageContext.request.contextPath}/FinalizarCompra?boton=finalizar">Finalizar compra</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${not empty sessionScope.pedidosFinalizados}">
+                            <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Usuario/HistorialPedidos.jspx">Historial de pedidos</a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </div>
+                <div class="login-boton-grupo">
+                    <form method="post" action="${pageContext.request.contextPath}/cerrarSesion">
+                        <button type="submit" class="login-boton">Cerrar sesión</button>
+                    </form>
+                </div>
             </div>
         </body>
     </html>

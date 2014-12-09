@@ -20,51 +20,70 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
-            <h1>Comprar</h1>
-            <form action="${pageContext.request.contextPath}/ProcesarCompra" method="post">
-                <c:forEach items="${catalogo}" var="producto">
+            <div class="main">
+                <header>
+                    <div class="cabecera">
+                        <h1>Mundo Vinilo</h1>
+                        <h2>Lo mejor en siete púlgadas</h2>
+                    </div>
+                    <div class="menu-lateral-contenedor">
+                        <ul class="menu-lateral">
+                            <li class="menu-opcion"><a>Inicio</a></li>
+                            <li class="menu-opcion"><a>Player</a></li>
+                            <li class="menu-opcion"><a>Diviertete</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="cuerpo">
+                    <h3>Nuestro catálogo disponible</h3>
+                    <form action="${pageContext.request.contextPath}/ProcesarCompra" method="post">
+                        <c:forEach items="${catalogo}" var="producto">
 
-                    <c:if test="${producto.stock >0}">
-                        <div class="display-roducto">
-                            <c:set var="estado" value="enabled"/>
-                            <p><c:forEach items="${carrito}" var="elem">
-                                    <c:if test="${producto.id eq elem.id}">
-                                        <c:set var="estado" value="disabled"/>
-                                    </c:if>
-                                </c:forEach>
-                                <c:choose>
-                                    <c:when test="${estado eq 'disabled'}">
-                                        <input type="checkbox" value="${producto.id}" name="idProducto" disabled="disabled"/>&#160;
-                                    </c:when>
-                                    <c:otherwise>
-                                        <input type="checkbox" value="${producto.id}" name="idProducto"/>&#160;
-                                    </c:otherwise>
-                                </c:choose>
+                            <c:if test="${producto.stock >0}">
+                                <div class="display-roducto">
+                                    <c:set var="estado" value="enabled"/>
+                                    <p><c:forEach items="${carrito}" var="elem">
+                                            <c:if test="${producto.id eq elem.id}">
+                                                <c:set var="estado" value="disabled"/>
+                                            </c:if>
+                                        </c:forEach>
+                                        <c:choose>
+                                            <c:when test="${estado eq 'disabled'}">
+                                                <input type="checkbox" value="${producto.id}" name="idProducto" disabled="disabled"/>&#160;
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="checkbox" value="${producto.id}" name="idProducto"/>&#160;
+                                            </c:otherwise>
+                                        </c:choose>
 
-                                <span>
-                                    <c:out value="${producto.denominacion}"/>&#160;
-                                </span>
-                                <span>
-                                    <c:out value="${producto.descripcion}"/>&#160;
-                                </span>
-                                <span>
-                                    <fmt:formatNumber  type="currency" pattern="##.00 €" value="${producto.precio}"/>&#160;
+                                        <span>
+                                            <c:out value="${producto.denominacion}"/>&#160;
+                                        </span>
+                                        <span>
+                                            <c:out value="${producto.descripcion}"/>&#160;
+                                        </span>
+                                        <span>
+                                            <fmt:formatNumber  type="currency" pattern="##.00 €" value="${producto.precio}"/>&#160;
 
-                                </span>
-                                <span>
-                                    <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1"/>
-                                </span>
-                                <c:if test="${producto.stockMinimo gt producto.stock}">
-                                    <span>¡¡Ultimas unidades!!</span>
-                                </c:if>
-                            </p>
+                                        </span>
+                                        <span>
+                                            <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1"/>
+                                        </span>
+                                        <c:if test="${producto.stockMinimo gt producto.stock}">
+                                            <span>¡¡Ultimas unidades!!</span>
+                                        </c:if>
+                                    </p>
+                                </div>
+                            </c:if>
+
+                        </c:forEach>
+                        <div class="login-boton-grupo">
+                            <button name="boton" value="volver" type="submit" class="login-boton">volver</button>
+                            <button name="boton" value="comprar" type="submit" class="login-boton">comprar</button>
                         </div>
-                    </c:if>
-
-                </c:forEach>
-                <button name="boton" value="volver" type="submit">volver</button>
-                <button name="boton" value="comprar" type="submit">comprar</button>
-            </form>
+                    </form>
+                </div>
+            </div>
         </body>
     </html>
 

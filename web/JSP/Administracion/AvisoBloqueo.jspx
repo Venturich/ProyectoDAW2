@@ -13,12 +13,16 @@
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
     <html>
-         <head>
+        <head>
             <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
-        <body><h2><c:out value="${mensaje}"/></h2>
-            <a href="${pageContext.request.contextPath}/RecargarListasAdmin"><button>Volver</button></a></body>
+        <body>
+            <div class="cuerpo">
+                <h2><c:out value="${mensaje}"/></h2>
+                <a href="${pageContext.request.contextPath}/RecargarListasAdmin"><button>Volver</button></a>
+            </div>
+        </body>
 
     </html>
 

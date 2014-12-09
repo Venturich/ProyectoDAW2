@@ -20,15 +20,35 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
-        <body>
-            <h1>Agregado</h1>
-            <c:if test="${agregado == true}">
-                <c:forEach items="${carrito}" var="k">
-                    <p>El carrito contiene: <c:out value="${k.denominacion}"/>: 1 ud</p>
-                </c:forEach>
-            </c:if>
-            <a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button>Volver</button></a>
 
+
+
+
+        <body>
+            <div class="main">
+                <header>
+                    <div class="cabecera">
+                        <h1>Mundo Vinilo</h1>
+                        <h2>Lo mejor en siete púlgadas</h2>
+                    </div>
+                    <div class="menu-lateral-contenedor">
+                        <ul class="menu-lateral">
+                            <li class="menu-opcion"><a>Inicio</a></li>
+                            <li class="menu-opcion"><a>Player</a></li>
+                            <li class="menu-opcion"><a>Diviertete</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="cuerpo">
+                    <h1>Agregado</h1>
+                    <c:if test="${agregado == true}">
+                        <c:forEach items="${carrito}" var="k">
+                            <p>El carrito contiene: <c:out value="${k.denominacion}"/>: 1 ud</p>
+                        </c:forEach>
+                    </c:if>
+                    <a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button>Volver</button></a>
+                </div>
+            </div>
         </body>
 
     </html>

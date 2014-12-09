@@ -25,18 +25,35 @@
             </script>
         </head>
         <body>
-            <h1>Historial</h1>
-            <c:forEach items="${pedidosFinalizados}" var="i">
-                <div class="historial-pedido">
-                    <p>Pedidos número: <c:out value="${i.idPedido}"/> 
-                        Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/> 
-                        Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
-                    <button onclick="mostrarPedido(${i.idPedido})">Ver pedido</button>
+            <div class="main">
+                <header>
+                    <div class="cabecera">
+                        <h1>Mundo Vinilo</h1>
+                        <h2>Lo mejor en siete púlgadas</h2>
+                    </div>
+                    <div class="menu-lateral-contenedor">
+                        <ul class="menu-lateral">
+                            <li class="menu-opcion"><a>Inicio</a></li>
+                            <li class="menu-opcion"><a>Player</a></li>
+                            <li class="menu-opcion"><a>Diviertete</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="cuerpo">
+                <h1>Historial</h1>
+                <c:forEach items="${pedidosFinalizados}" var="i">
+                    <div class="historial-pedido">
+                        <p>Pedidos número: <c:out value="${i.idPedido}"/> 
+                            Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/> 
+                            Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
+                        <button onclick="mostrarPedido(${i.idPedido})">Ver pedido</button>
+                    </div>
+
+                </c:forEach>
+                <div id="contenedor-pedidos">
+
                 </div>
-
-            </c:forEach>
-            <div id="contenedor-pedidos">
-
+            </div>
             </div>
 
         </body>

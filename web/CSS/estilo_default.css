@@ -2,15 +2,155 @@
     Created on : 21-nov-2014, 20:08:35
     Author     : Ventura
 */
+@font-face {
+    font-family: code;
+    src: url("../FONTS/CODE Bold.otf");
+}
 
-#login-marco{
-    width: 400px;
-    height: 150px;
-    border-radius: 15px;
-    border-color: blue;
-    border-style: solid;
+html{
+    margin:0;
+    padding:0;
+}
+body{ background-color: #FFFFFF;
+      margin:0;
+      padding:0;}
+.main{background: #000000 url(../IMAGES/disco.png) no-repeat ; 
+      background-position: top right;
+      background-size: 40%;
+      position: absolute;
+      top:0px;
+      left:10%;
+      max-width: 90%;
+      max-height: 800px;
+      width: 90%;
+      height: 700px;
+      margin: 0px  auto; 
+      box-shadow:  inset 10px -10px 1px black,
+          inset 11px -11px 1px rgba(200,200,200,0.1), inset 20px -20px 1px black,
+          inset 21px -21px 1px rgba(200,200,200,0.2), inset 30px -30px 1px black,
+          inset 31px -31px 1px rgba(200,200,200,0.3), inset 40px -40px 1px black,
+          inset 41px -41px 1px rgba(200,200,200,0.4), inset 50px -50px 1px black,
+          inset 51px -51px 1px rgba(200,200,200,0.5), inset 60px -60px 1px black,
+          inset 61px -61px 1px rgba(200,200,200,0.6), inset 70px -70px 1px black,
+          inset 71px -71px 1px rgba(200,200,200,0.7), inset 80px -80px 1px black,
+          inset 81px -81px 1px rgba(200,200,200,0.8), inset 90px -90px 1px black,
+          inset 91px -91px 1px rgba(200,200,200,0.9), inset 100px -100px 1px black;
+      border-radius: 0px 0px 0px 500px / 0px 0px 0px 500px;
+}
+.login-marco{
+    background-color: white;
+    width:300px;
+    height: 100px;
+    text-align: center;
+    padding:10px;
+    position:absolute;
+    right: 10px;
+    top:10px;
+    border-radius: 5px;
+    border:1px solid #FF8631;
+}
+.login-marco h4{
+    font-family: code;
+    margin:0px 0px 10px;
+    padding:0;
+
+}
+.login-etiqueta{
+    float:left;
+
+}
+.login-entrada {
+    float:right;
+
+}
+.login-boton-grupo{
+    margin:16px auto;
+}
+
+.cabecera *{
+    font: bold 30px code, Arial, Helvetica, Geneva, sans-serif;
+    color:white;
+    position:absolute;
+    left:12%;
+    text-shadow: 0px -1px 2px #ffffdd , 0px 1px 2px #ffffaa;
+}
+.cabecera h1{
+    text-align: center;
+    top:10px;
+    letter-spacing: 3px;
+    word-spacing: 10px;
+}
+.cabecera h2{
+    text-align: center;
+    top:50px;
+    letter-spacing: 3px;
+    word-spacing: 7px;
+}
+
+.login-boton {
+    margin-left:10px;
+    height: 20px;
+    width: auto;
+    background: #663300;
+    border: 2px solid rgba(32, 16, 0, 0.59);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font: bold 14px code, Arial, Helvetica, Geneva, sans-serif;
+
+    background: -webkit-linear-gradient(top, #663300, #201000);
+    background: -moz-linear-gradient(top, #663300, #201000);
+    background: linear-gradient(top, #663300, #201000);
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-box-shadow: 0 3px 0 #201000;
+    -moz-box-shadow: 0 3px 0 #201000;
+    box-shadow: 0 3px 0 #201000;
+
+    text-shadow: 0 2px 2px rgba(255, 255, 255, 0.2);
+
+}
+.login-boton:hover {
+    background: #B37436;
+    background: -webkit-linear-gradient(top, #B37436, #8D5116);
+    background: -moz-linear-gradient(top, #B37436, #8D5116);
+    background: -o-linear-gradient(top, #B37436, #8D5116);
+    background: -ms-linear-gradient(top, #B37436, #8D5116);
+    background: linear-gradient(top, #B37436, #8D5116);
+}
+
+.menu-lateral-contenedor{
+    position: absolute;
+    left:-8%;
+    top:20%;
+    
+
+}
+.menu-lateral{
+    height: 300px;
+    width:200px;
+    list-style: none;
+}
+
+.menu-opcion{
+    width: 100%;
+    height: 33%;
+    
+    background-image: url(../IMAGES/tagrojo2.png);
+    background-origin: border-box;
+    background-repeat: no-repeat;
+
+}
+
+.menu-opcion a{
+    font: 16px code, Arial, Helvetica, Geneva, sans-serif;
+    color:white;
+    letter-spacing: 1px;
+    margin: 26px 0px 0px 35px;
+    float:left;
     
     
     
 }
-

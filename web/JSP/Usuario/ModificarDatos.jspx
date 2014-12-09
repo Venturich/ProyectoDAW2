@@ -14,35 +14,52 @@
                 doctype-public="-//W3C//DTD XHTML 1.1//EN"
                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
     <html>
-         <head>
+        <head>
             <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
-            <form method="post" action="${pageContext.request.contextPath}/ModificarDatos">
-                <span class="registro-etiqueta">Nombre:</span> <input type="text" name="nombre" class="registro-entrada" value="${cliente.nombre}"/><br/>
-                <span class="registro-etiqueta">Apellidos:</span> <input type="text" name="apellidos" class="registro-entrada" value="${cliente.apellidos}"/><br/>
-                <span class="registro-etiqueta">NIF:</span><input type="text" maxlength="9" size="9" name="nif_nie" class="registro-entrada" value="${cliente.nif_nie}" readOnly="true"/><br/>
-                <fmt:formatDate type="date" value="${cliente.fechaNacimiento}" var="fecNac" pattern="yyyy-MM-dd"/>
-                <span class="registro-etiqueta">Fecha Nacimiento:</span> <input type="date" name="fechaNacimiento" class="registro-entrada" value="${fecNac}"/><br/>
-                <span class="registro-etiqueta">Sexo:</span> 
-                <c:choose>
-                    <c:when test="${cliente.sexo=='h'}">
-                        <input type="radio" name="sexo" value="h" class="registro-entrada calendario" checked="checked"/>Hombre 
-                        <input type="radio" name="sexo" value="m"/>Mujer<br/>
-                    </c:when>
-                    <c:otherwise>
-                        <input type="radio" name="sexo" value="h" class="registro-entrada calendario"/>Hombre 
-                        <input type="radio" name="sexo" value="m" checked="checked"/>Mujer<br/>
-                    </c:otherwise>
-                </c:choose>
+            <div class="main">
+                <header>
+                    <div class="cabecera">
+                        <h1>Mundo Vinilo</h1>
+                        <h2>Lo mejor en siete púlgadas</h2>
+                    </div>
+                    <div class="menu-lateral-contenedor">
+                        <ul class="menu-lateral">
+                            <li class="menu-opcion"><a>Inicio</a></li>
+                            <li class="menu-opcion"><a>Player</a></li>
+                            <li class="menu-opcion"><a>Diviertete</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="cuerpo">
+                <form method="post" action="${pageContext.request.contextPath}/ModificarDatos">
+                    <span class="registro-etiqueta">Nombre:</span> <input type="text" name="nombre" class="registro-entrada" value="${cliente.nombre}"/><br/>
+                    <span class="registro-etiqueta">Apellidos:</span> <input type="text" name="apellidos" class="registro-entrada" value="${cliente.apellidos}"/><br/>
+                    <span class="registro-etiqueta">NIF:</span><input type="text" maxlength="9" size="9" name="nif_nie" class="registro-entrada" value="${cliente.nif_nie}" readOnly="true"/><br/>
+                    <fmt:formatDate type="date" value="${cliente.fechaNacimiento}" var="fecNac" pattern="yyyy-MM-dd"/>
+                    <span class="registro-etiqueta">Fecha Nacimiento:</span> <input type="date" name="fechaNacimiento" class="registro-entrada" value="${fecNac}"/><br/>
+                    <span class="registro-etiqueta">Sexo:</span> 
+                    <c:choose>
+                        <c:when test="${cliente.sexo=='h'}">
+                            <input type="radio" name="sexo" value="h" class="registro-entrada calendario" checked="checked"/>Hombre 
+                            <input type="radio" name="sexo" value="m"/>Mujer<br/>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="radio" name="sexo" value="h" class="registro-entrada calendario"/>Hombre 
+                            <input type="radio" name="sexo" value="m" checked="checked"/>Mujer<br/>
+                        </c:otherwise>
+                    </c:choose>
 
-                <span class="registro-etiqueta">Direccion:</span> <input type="text" name="direccion" class="registro-entrada" value="${cliente.direccion}"/><br/>
-
-                <button type="submit" name="boton" value="volver">Volver</button>
-                <button type="submit" name="boton" value="modificar">Modificar</button>
-            </form>
-
+                    <span class="registro-etiqueta">Direccion:</span> <input type="text" name="direccion" class="registro-entrada" value="${cliente.direccion}"/><br/>
+                    <div class="login-boton-grupo">
+                        <button type="submit" name="boton" value="volver" class="login-boton">Volver</button>
+                    <button type="submit" name="boton" value="modificar" class="login-boton">Modificar</button>
+                    </div>
+                </form>
+                </div>
+            </div>
         </body>
     </html>
 </jsp:root>
