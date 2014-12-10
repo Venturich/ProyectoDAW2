@@ -28,58 +28,70 @@
                     </div>
                     <div class="menu-lateral-contenedor">
                         <ul class="menu-lateral">
-                            <li class="menu-opcion"><a>Inicio</a></li>
-                            <li class="menu-opcion"><a>Player</a></li>
-                            <li class="menu-opcion"><a>Diviertete</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/index.jspx">Inicio</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/Player.jspx">Player</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/JuegoCanvas.jspx">Diviertete</a></li>S
                         </ul>
                     </div>
                 </header>
                 <div class="cuerpo">
-                    <h3>Nuestro catálogo disponible</h3>
+                    <h3 class="titulo-seccion">Nuestro catálogo disponible</h3>
                     <form action="${pageContext.request.contextPath}/ProcesarCompra" method="post">
+
+                        <div class="display-producto">
+                            <p class="columna">Agregar </p>
+                            <p class="columna">Codigo </p>
+                            <p class="columna-y-media">Descripcion </p>
+                            <p class="columna">Precio </p>
+                            <p class="media-columna">Unidades </p>
+                            <p class="columna">Stock</p>
+                        </div>
+
                         <c:forEach items="${catalogo}" var="producto">
 
                             <c:if test="${producto.stock >0}">
-                                <div class="display-roducto">
+                                <div class="display-producto">
                                     <c:set var="estado" value="enabled"/>
-                                    <p><c:forEach items="${carrito}" var="elem">
-                                            <c:if test="${producto.id eq elem.id}">
-                                                <c:set var="estado" value="disabled"/>
-                                            </c:if>
-                                        </c:forEach>
-                                        <c:choose>
-                                            <c:when test="${estado eq 'disabled'}">
-                                                <input type="checkbox" value="${producto.id}" name="idProducto" disabled="disabled"/>&#160;
-                                            </c:when>
-                                            <c:otherwise>
-                                                <input type="checkbox" value="${producto.id}" name="idProducto"/>&#160;
-                                            </c:otherwise>
-                                        </c:choose>
-
-                                        <span>
-                                            <c:out value="${producto.denominacion}"/>&#160;
-                                        </span>
-                                        <span>
-                                            <c:out value="${producto.descripcion}"/>&#160;
-                                        </span>
-                                        <span>
-                                            <fmt:formatNumber  type="currency" pattern="##.00 €" value="${producto.precio}"/>&#160;
-
-                                        </span>
-                                        <span>
-                                            <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1"/>
-                                        </span>
-                                        <c:if test="${producto.stockMinimo gt producto.stock}">
-                                            <span>¡¡Ultimas unidades!!</span>
+                                    <c:forEach items="${carrito}" var="elem">
+                                        <c:if test="${producto.id eq elem.id}">
+                                            <c:set var="estado" value="disabled"/>
                                         </c:if>
-                                    </p>
+                                    </c:forEach>
+                                    <c:choose>
+                                        <c:when test="${estado eq 'disabled'}">
+                                            <input class="columna" type="checkbox" value="${producto.id}" name="idProducto" disabled="disabled"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input class="columna" type="checkbox" value="${producto.id}" name="idProducto"/>
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                    <span class="columna">
+                                        <c:out value="${producto.denominacion}"/>&#160;
+                                    </span>
+                                    <span class="columna-y-media">
+                                        <c:out value="${producto.descripcion}"/>&#160;
+                                    </span>
+                                    <span class="columna">
+                                        <fmt:formatNumber  type="currency" pattern="##.00 €" value="${producto.precio}"/>&#160;
+
+                                    </span>
+                                    <span  class="media-columna">
+                                        <input type="number" readonly="true" value="1" name="cantidad" maxlength="1" size="1" />
+                                    </span>
+                                    <span class="aviso-importante columna"><c:if test="${producto.stockMinimo gt producto.stock}">
+                                            ¡¡Ultimas unidades!!
+                                        </c:if></span>
+
                                 </div>
                             </c:if>
 
                         </c:forEach>
-                        <div class="login-boton-grupo">
-                            <button name="boton" value="volver" type="submit" class="login-boton">volver</button>
-                            <button name="boton" value="comprar" type="submit" class="login-boton">comprar</button>
+                        <div class="inferior-centro">
+                            <div class="login-boton-grupo">
+                                <button name="boton" value="volver" type="submit" class="login-boton">Volver</button>
+                                <button name="boton" value="comprar" type="submit" class="login-boton">Agregar</button>
+                            </div>
                         </div>
                     </form>
                 </div>

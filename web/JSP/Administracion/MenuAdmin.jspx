@@ -20,33 +20,36 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
-            <div class="menu-admin">
-                <h1>Bienvenido administrador</h1>
-                <ul class="menu-lista">
-                    <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Administracion/BloquearUsuarios.jspx">Bloquear usuarios</a>
-                    </li>
-                    <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Administracion/BloquearProductos.jspx">Descatalogar productos</a>
-                    </li>
-                </ul>
-                <div><h3>Novedades:</h3>
-                    <c:forEach items="${catalogo}" var="p">
-                        <c:choose>
-                            <c:when test="${p.stock eq 0}">
-                                <p>El producto <c:out value="${p.id}"/> se encuentra sin stock</p> 
-                            </c:when>
-                            <c:when test="${p.stock lt p.stockMinimo}">
+            <div class="main">
+                <div class="menu-admin cuerpo">
+                    <h1 class="titulo-seccion">Bienvenido administrador</h1>
+                    <ul class="menu-lista">
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Administracion/BloquearUsuarios.jspx">Bloquear usuarios</a>
+                        </li>
+                        <li class="menu-linea"><a href="${pageContext.request.contextPath}/JSP/Administracion/BloquearProductos.jspx">Descatalogar productos</a>
+                        </li>
+                    </ul>
+                        <div class="contenedor-pedidos-historial"><h3 class="titulo-seccion">Novedades:</h3>
+                        <c:forEach items="${catalogo}" var="p">
+                            <c:choose>
+                                <c:when test="${p.stock eq 0}">
+                                    <p class="aviso-importante">El producto <c:out value="${p.id}"/> se encuentra sin stock</p> 
+                                </c:when>
+                                <c:when test="${p.stock lt p.stockMinimo}">
 
-                                <p>El producto <c:out value="${p.id}"/> está por debajo del stock mínimo</p>
-                            </c:when>
-                        </c:choose>
-                    </c:forEach>
+                                    <p class="aviso-correcto ">El producto <c:out value="${p.id}"/> está por debajo del stock mínimo</p>
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </div>
+                    <div class="login-boton-grupo inferior-medio">
+                        <form method="post" action="${pageContext.request.contextPath}/cerrarSesion">
+                            <button type="submit" class="login-boton-largo">Cerrar sesión</button>
+                        </form>
+                    </div>  
                 </div>
-                <div class="botonera">
-                    <form method="post" action="cerrarSesion">
-                        <button type="submit">Cerrar sesión</button>
-                    </form>
-                </div>  
+            </div>
         </body>
-    </div>
-</html>
+
+    </html>
 </jsp:root>

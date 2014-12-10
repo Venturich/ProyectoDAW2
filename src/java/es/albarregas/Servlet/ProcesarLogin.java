@@ -52,7 +52,8 @@ public class ProcesarLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         sesion = request.getSession();
         UsuariosDAO usersDAO = new UsuariosDAO();
 
@@ -104,7 +105,7 @@ public class ProcesarLogin extends HttpServlet {
                         } catch (InvocationTargetException ex) {
                             Logger.getLogger(ProcesarLogin.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
+                        sesion.removeAttribute("error");
                         getServletContext().getRequestDispatcher("/JSP/Usuario/MenuUsuario.jspx").forward(request, response);
                         return;
 
@@ -114,10 +115,12 @@ public class ProcesarLogin extends HttpServlet {
                         ArrayList<Productos> catalogo = new ArrayList<Productos>();
                         catalogo = proDao.getListaProductos();
                         sesion.setAttribute("catalogo", catalogo);
+                        sesion.removeAttribute("error");
                         getServletContext().getRequestDispatcher("/JSP/Administracion/MenuAdmin.jspx").forward(request, response);
                         return;
 
                     }
+                     
                     break;
                 } else if (test.getEmail().equals(dato.getEmail())
                         && test.getClave().equals(dato.getClave()) && test.getBloqueado().equals("s")) {

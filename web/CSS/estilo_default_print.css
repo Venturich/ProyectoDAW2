@@ -1,0 +1,37 @@
+/* 
+    Created on : 21-nov-2014, 20:08:35
+    Author     : Ventura
+*/
+h1, h2,h3, h4, ul, li, button, a{
+    visibility: hidden;
+    display: none;
+    
+}
+h1.factura-titulo{
+    visibility: visible;
+     font-family: code, Arial, Helvetica, Geneva, sans-serif;
+}
+
+.factura-tabla, .factura-datos, .factura-datos-tienda{
+    width: 70%;
+    margin:10px auto;
+    padding: 3px;
+}
+
+.factura-tabla, .factura-tabla tr td {
+    border: 1px solid #663300;
+    border-collapse: collapse;
+    padding: 3px;
+}
+.factura-tabla{
+    margin-bottom: 100px;
+    
+}
+.factura-datos-tienda,.factura-datos-tienda tr, .factura-datos-tienda tr th, .factura-datos-tienda tr td{
+    border: 1px  #660000 solid ;
+    border-collapse: collapse;
+    padding: 3px;
+}
+.factura-titulo{
+    text-align: center;
+}

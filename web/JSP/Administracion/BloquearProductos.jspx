@@ -19,14 +19,16 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
+            <div class="main">
             <div class="cuerpo">
+                
                 <form action="${pageContext.request.contextPath}/BloquearProductos" method="post">
-                    <table>
+                    <table class="tabla-administracion">
                         <tr>
-                            <th>Producto</th>
-                            <th>Denominacion</th>
-                            <th>Bloqueado</th>
-                            <th>Precio</th>
+                            <th class="titulo-seccion">Producto</th>
+                            <th class="titulo-seccion">Denominacion</th>
+                            <th class="titulo-seccion">Bloqueado</th>
+                            <th class="titulo-seccion">Precio</th>
                         </tr>
                         <c:forEach var="i" items="${catalogo}" >
                             <tr>
@@ -50,10 +52,12 @@
                             </tr>
                         </c:forEach>
                     </table>
-                    <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdmin.jspx"><button type="button">Volver</button></a>
-                    <button type="submit">Actualizar</button>
+                    <div class="login-boton-grupo inferior-centro">
+                        <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdmin.jspx"><button type="button" class="login-boton">Volver</button></a>
+                        <button type="submit" class="login-boton-largo">Actualizar</button>
+                    </div>
                 </form>
-            </div>
+            </div></div>
         </body>
 
     </html>

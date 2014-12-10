@@ -57,6 +57,10 @@
         <servlet-name>BloquearUsuarios</servlet-name>
         <servlet-class>es.albarregas.Servlet.BloquearUsuarios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VolverDeFactura</servlet-name>
+        <servlet-class>es.albarregas.Servlet.VolverDeFactura</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ComprobarLogin</servlet-name>
         <url-pattern>/ComprobarLogin</url-pattern>
@@ -105,9 +109,11 @@
         <servlet-name>BloquearUsuarios</servlet-name>
         <url-pattern>/BloquearUsuarios</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VolverDeFactura</servlet-name>
+        <url-pattern>/VolverDeFactura</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>300</session-timeout>
     </session-config>
 </web-app>

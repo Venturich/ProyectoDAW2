@@ -52,6 +52,8 @@ public class ComprobarRegistro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String campoErroneo = new String();
         Boolean error = false;
         response.setContentType("text/html;charset=UTF-8");

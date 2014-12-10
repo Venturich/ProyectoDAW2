@@ -37,7 +37,8 @@ HttpSession sesion;
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         sesion=request.getSession();
         sesion.invalidate();
         request.getRequestDispatcher("index.jspx").forward(request, response);

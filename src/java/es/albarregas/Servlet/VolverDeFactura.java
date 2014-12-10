@@ -11,12 +11,10 @@
  */
 package es.albarregas.Servlet;
 
-import es.albarregas.DAO.ClientesDAO;
-import es.albarregas.DAO.UsuariosDAO;
-import es.albarregas.Modelo.Clientes;
-import es.albarregas.Modelo.Usuarios;
+import es.albarregas.Modelo.Productos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +25,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ventura
  */
-public class ProcesarRegistro extends HttpServlet {
+public class VolverDeFactura extends HttpServlet {
 
-    HttpSession sesion;
+    private HttpSession sesion;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,22 +42,11 @@ public class ProcesarRegistro extends HttpServlet {
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        UsuariosDAO userDAO = new UsuariosDAO();
-        ClientesDAO clientDAO = new ClientesDAO();
         sesion = request.getSession();
-        int estado = 0;
-        response.setContentType("text/html;charset=UTF-8");
-
-        estado = userDAO.insertarUsuario((Usuarios) sesion.getAttribute("usuario"));
-        if (estado > 0) {
-            clientDAO.insertarCliente((Clientes) sesion.getAttribute("cliente"), estado);
-            sesion.setAttribute("error", "El registro se ha llevado a cabo con exito, puedes logearte");
-        } else {
-            sesion.setAttribute("error", "el registro no se ha llevado a cabo con exito");
-            
-        }
-        getServletContext().getRequestDispatcher("/JSP/Login/Login.jspx").forward(request, response);
-
+        ArrayList<Productos> carrito = ((ArrayList<Productos>) sesion.getAttribute("carrito"));
+        carrito.clear();
+        sesion.setAttribute("carrito", carrito);
+        getServletContext().getRequestDispatcher("/JSP/Usuario/MenuUsuario.jspx").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

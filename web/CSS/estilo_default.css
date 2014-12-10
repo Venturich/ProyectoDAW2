@@ -7,10 +7,12 @@
     src: url("../FONTS/CODE Bold.otf");
 }
 
-html{
-    margin:0;
-    padding:0;
+p,span, h1, h2, h3, h4, h5, h6,input, a, label, table, td, th, tr, textarea{
+    font-family: code, Arial, Helvetica, Geneva, sans-serif;
+    letter-spacing: 1px;
+
 }
+
 body{ background-color: #FFFFFF;
       margin:0;
       padding:0;}
@@ -21,9 +23,9 @@ body{ background-color: #FFFFFF;
       top:0px;
       left:10%;
       max-width: 90%;
-      max-height: 800px;
+      max-height: 1200px;
       width: 90%;
-      height: 700px;
+      height: 900px;
       margin: 0px  auto; 
       box-shadow:  inset 10px -10px 1px black,
           inset 11px -11px 1px rgba(200,200,200,0.1), inset 20px -20px 1px black,
@@ -35,12 +37,12 @@ body{ background-color: #FFFFFF;
           inset 71px -71px 1px rgba(200,200,200,0.7), inset 80px -80px 1px black,
           inset 81px -81px 1px rgba(200,200,200,0.8), inset 90px -90px 1px black,
           inset 91px -91px 1px rgba(200,200,200,0.9), inset 100px -100px 1px black;
-      border-radius: 0px 0px 0px 500px / 0px 0px 0px 500px;
+      border-radius: 0px 0px 0px 400px / 0px 0px 0px 400px;
 }
 .login-marco{
     background-color: white;
-    width:300px;
-    height: 100px;
+    width:350px;
+    min-height: 100px;
     text-align: center;
     padding:10px;
     position:absolute;
@@ -65,6 +67,8 @@ body{ background-color: #FFFFFF;
 }
 .login-boton-grupo{
     margin:16px auto;
+    min-width: 250px; 
+    width: 300px;;
 }
 
 .cabecera *{
@@ -75,58 +79,59 @@ body{ background-color: #FFFFFF;
     text-shadow: 0px -1px 2px #ffffdd , 0px 1px 2px #ffffaa;
 }
 .cabecera h1{
-    text-align: center;
     top:10px;
-    letter-spacing: 3px;
     word-spacing: 10px;
 }
 .cabecera h2{
-    text-align: center;
     top:50px;
-    letter-spacing: 3px;
     word-spacing: 7px;
 }
+.cabecera h1, .cabecera h2{
+    text-align: center;
+    letter-spacing: 3px;
+}
 
-.login-boton {
+.login-boton, .login-boton-largo {
     margin-left:10px;
     height: 20px;
     width: auto;
+    max-width: 120px;
     background: #663300;
     border: 2px solid rgba(32, 16, 0, 0.59);
     color: rgba(255, 255, 255, 0.8);
     text-align: center;
     font: bold 14px code, Arial, Helvetica, Geneva, sans-serif;
-
     background: -webkit-linear-gradient(top, #663300, #201000);
     background: -moz-linear-gradient(top, #663300, #201000);
     background: linear-gradient(top, #663300, #201000);
-
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-
     -webkit-box-shadow: 0 3px 0 #201000;
     -moz-box-shadow: 0 3px 0 #201000;
     box-shadow: 0 3px 0 #201000;
-
     text-shadow: 0 2px 2px rgba(255, 255, 255, 0.2);
-
 }
-.login-boton:hover {
+
+.login-boton:hover, .login-boton-largo:hover {
     background: #B37436;
     background: -webkit-linear-gradient(top, #B37436, #8D5116);
     background: -moz-linear-gradient(top, #B37436, #8D5116);
-    background: -o-linear-gradient(top, #B37436, #8D5116);
-    background: -ms-linear-gradient(top, #B37436, #8D5116);
     background: linear-gradient(top, #B37436, #8D5116);
+}
+.login-boton a, .login-boton-largo a{
+    text-decoration: none;
+    color:white;
+    letter-spacing: 1px;
+}
+.login-boton-largo{
+    min-width: 150px;
 }
 
 .menu-lateral-contenedor{
     position: absolute;
     left:-8%;
     top:20%;
-    
-
 }
 .menu-lateral{
     height: 300px;
@@ -137,7 +142,6 @@ body{ background-color: #FFFFFF;
 .menu-opcion{
     width: 100%;
     height: 33%;
-    
     background-image: url(../IMAGES/tagrojo2.png);
     background-origin: border-box;
     background-repeat: no-repeat;
@@ -150,7 +154,321 @@ body{ background-color: #FFFFFF;
     letter-spacing: 1px;
     margin: 26px 0px 0px 35px;
     float:left;
+    text-decoration: none;
+}
+
+.cuerpo{
+    background-color: rgba(255,255,255,0.5);
+    width: 70%;
+    min-height: 450px;
+    position:absolute;
+    left:12%;
+    top:15%;
+    border-radius: 0px 5px 0px 100px;
+
+}
+
+.inferior-centro{
+    position:absolute;
+    bottom: 5px;
+    left:70%;
+
+}
+.inferior-medio{
+    position:absolute;
+    bottom: 5px;
+    left:40%;
+    display: block;
+
+
+}
+
+.titulo-seccion{
+    font: bold 18px code, Arial, Helvetica, Geneva, sans-serif;
+    color:#663300;
+    text-align: center;
+
+}
+
+.display-producto{
+    width:90%;
+    height: 40px;
+    margin:0px auto;
+    display:block;
+}
+.display-producto span,.display-producto input,
+.display-producto p{
+    display:inline;
+    float:left;
+    text-align: center;
+    margin-right: 2px;
+}
+.display-producto span input[type="number"]{
+    width: 70%;
+}
+
+.display-producto span input[type="number"]:hover{
+    background-color: #66ff66;
+
+}
+
+.columna{
+    width: 16%;
+}
+.columna-y-media{
+    width: 24%;
+}
+.media-columna{
+    width: 8%;
+}
+
+.tercio{
+    width:33%;
+    display:inline-block;
+}
+.cuarto{
+    width:24%;
+    display:inline-block;
+}
+
+.modificar-datos, .registrar-datos{
+    margin: 30px auto;
+    display: block;
+    width: 92%;
+    min-height: 450px;
+}
+.registrar-datos{
+    height: 500px;
+}
+.registro-etiqueta, .registro-entrada{
+    display:inline-block;  
+    margin:0px;
+}
+
+.historial-pedido{
+    width: 40%;
+    margin: 10px 30px 10px 10px;
+    float: left;
+}
+.historial-pedido p, .historial-pedido button{
+    margin: 0;
+    padding: 0;
+}
+
+.linea-historial{
+    margin: 12px;
+}
+
+.contenedor-pedidos-historial{
+    width: 50%;
+    float: right;
+    margin-right: 3%;
+    min-height: 350px;
+    border-radius: 15px;
+    border:2px solid #FF8631;
+    background-color: white;
+    z-index: 11;
+
+}
+
+.carrito{width: 80%;
+         margin:20px auto;
+}
+.carrito p{
+    text-decoration: underline;
+    text-decoration-color:  #FFFFFF;
+
+}
+
+.alinear{
+    display:inline-block;
+}
+.centrar-texto{
+    text-align: center;
+    margin: 0px auto;
+}
+
+.derecha-texto{
+    text-align: right;
+    margin-right:  5px !important; 
+}
+
+.texto-resaltado{
+    color:#663300;
+    -webkit-animation: resaltar 5s ;
+    animation: resaltar 2s;
+
+}
+
+@-webkit-keyframes resaltar{
+    0%{-webkit-transform: rotate(0deg); 
+       transform: rotate(0deg);
+    }
+    20%{-webkit-transform: rotate(30deg); 
+        transform: rotate(30deg);
+    }
+    80%{-webkit-transform: rotate(-30deg); 
+        transform: rotate(-30deg);
+    }
+    100%{-webkit-transform: rotate(0deg); 
+         transform: rotate(0deg);}
+}
+@keyframes resaltar{
+    0%{-webkit-transform: rotate(0deg); 
+       transform: rotate(0deg);
+    }
+    20%{-webkit-transform: rotate(30deg); 
+        transform: rotate(30deg);
+    }
+    80%{-webkit-transform: rotate(-30deg); 
+        transform: rotate(-30deg);
+    }
+    100%{-webkit-transform: rotate(0deg); 
+         transform: rotate(0deg);
+    }
+
+}
+
+.menu-lista {
+    padding: 0px;
+    list-style: none;
+    float:left;
+    width: 250px;
+    height: auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    box-shadow: 2px 0px 10px 1px #663300;
+
+}
+.menu-linea{
+
+}
+.menu-linea a {
+
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    background: #BBBBBB;
+    color: #663300;
+    padding: 7px 15px 7px 15px;
+    -webkit-border-top-right-radius: 30px;
+    border-top-right-radius: 30px;
+    -webkit-border-bottom-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 100%;
+    height: 35px;
+    display: block;
+    text-decoration: none;
+    -webkit-box-shadow: 2px 2px 4px #663300;
+
+
+    /* box-shadow: 2px 2px 4px #663300; */
+
+
+    border:1px solid #cbcbcb;
+}
+
+.menu-linea  a:hover {
+    background: #ebebeb ;
+    border:1px solid #663300;
+    color: #B37436;
+    padding: 7px 15px 7px 30px;
+}
+
+.imagen-aux{
+    float: right;
+    margin-right: 1%;
+
+}
+.imagen{
+    border-radius: 20% 5% / 10% 3%;
+    border: 3px dotted #663300;
+
+}
+.factura-tabla, .factura-datos, .factura-datos-tienda{
+    width: 70%;
+    margin:10px auto;
+    padding: 3px;
+}
+.factura-tabla{
+    margin-bottom: 100px;
+
+}
+
+.factura-tabla, .factura-tabla tr td {
+    border: 1px solid #663300;
+    border-collapse: collapse;
+    padding: 3px;
+}
+.factura-datos-tienda,.factura-datos-tienda tr, .factura-datos-tienda tr th, .factura-datos-tienda tr td{
+    border: 1px  #660000 solid ;
+    border-collapse: collapse;
+    padding: 3px;
+}
+.factura-titulo{
+    text-align: center;
+}
+
+.registro-entrada, .registro-etiqueta{
+    width:content-box;
+}
+.botonera{
+    display: block;
+    padding: 15px
+}
+
+.direccion{
+    height: 40px;
+    width: 33%;
+    resize: none;
+
+}
+
+.aviso-importante{
+    padding-left: 1px;
+    color:red;    
+}
+
+.aviso-correcto{
+    padding-left: 1px;
+    color: #66ff66;    
+}
+
+.tabla-administracion{
+    width:90%;
+    margin: 20px auto;
+
+}
+.tabla-administracion, .tabla-administracion tr,
+.tabla-administracion tr td, .tabla-administracion tr th{
+    border:2px solid #000033;
+    border-collapse: collapse;
+    padding: 5px;
+
+}
+
+.alerta-admin{
+    background: -webkit-linear-gradient(top, white,  darkgrey ) ;
+    background: -moz-linear-gradient(left, white,  darkgrey) ;
+    background: linear-gradient(left, white,  darkgrey) ;
+    width: 50%;
+    height: 150px;
+    margin: 50px auto;
+    border-radius: 150px;
+}
+.alerta-admin h2{
+    padding-top: 50px;
+}
+.alerta-admin a{
+    position: relative;
+    left: 40%;
     
-    
-    
+}
+
+.cambiar-estilo{
+    position:fixed;
+    top:15px;
+    left:15px;
+    width: 100px;
+    height: 30px;        
 }

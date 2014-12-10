@@ -18,14 +18,15 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
+            <div class="main">
             <div class="cuerpo">
                 <form action="${pageContext.request.contextPath}/BloquearUsuarios" method="post">
-                    <table>
+                    <table class="tabla-administracion">
                         <tr>
-                            <th>#Usuario</th>
-                            <th>Email</th>
-                            <th>Bloqueado</th>
-                            <th>Tipo</th>
+                            <th class="titulo-seccion">#Usuario</th>
+                            <th class="titulo-seccion">Email</th>
+                            <th class="titulo-seccion">Bloqueado</th>
+                            <th class="titulo-seccion">Tipo</th>
                         </tr>
                         <c:forEach var="i" items="${listaUsuarios}" >
                             <tr>
@@ -60,10 +61,13 @@
                             </tr>
                         </c:forEach>
                     </table>
-                    <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdmin.jspx"><button type="button">Volver</button></a>
-                    <button type="submit">Actualizar</button>
+                    <div class="login-boton-grupo inferior-medio">
+                    <a href="${pageContext.request.contextPath}/JSP/Administracion/MenuAdmin.jspx"><button class="login-boton" type="button">Volver</button></a>
+                    <button class="login-boton" type="submit">Actualizar</button>
+                    </div>
                 </form>
             </div>
+                    </div>
         </body>
     </html>
 </jsp:root>

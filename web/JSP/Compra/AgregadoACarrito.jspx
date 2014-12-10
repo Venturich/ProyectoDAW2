@@ -33,20 +33,25 @@
                     </div>
                     <div class="menu-lateral-contenedor">
                         <ul class="menu-lateral">
-                            <li class="menu-opcion"><a>Inicio</a></li>
-                            <li class="menu-opcion"><a>Player</a></li>
-                            <li class="menu-opcion"><a>Diviertete</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/index.jspx">Inicio</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/Player.jspx">Player</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/JuegoCanvas.jspx">Diviertete</a></li>
                         </ul>
                     </div>
                 </header>
                 <div class="cuerpo">
-                    <h1>Agregado</h1>
+                    <h1 class="titulo-seccion">El carrito contiene ahora...</h1>
                     <c:if test="${agregado == true}">
+                        <p class="centrar-texto">los siguientes productos:</p>
                         <c:forEach items="${carrito}" var="k">
-                            <p>El carrito contiene: <c:out value="${k.denominacion}"/>: 1 ud</p>
+                            <p class="centrar-texto "><c:out value="${k.denominacion}"/> 1 unidad</p>
                         </c:forEach>
+                            <p class="centrar-texto">Enhorabuena</p>
                     </c:if>
-                    <a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button>Volver</button></a>
+                            <div class="login-boton-grupo inferior-centro">
+                            <a class="" href="${pageContext.request.contextPath}/JSP/Compra/MenuCompra.jspx"><button class="login-boton-largo">Seguir Comprando</button></a>   
+                            <a class="" href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"><button class="login-boton">Volver</button></a>   
+                            </div>
                 </div>
             </div>
         </body>

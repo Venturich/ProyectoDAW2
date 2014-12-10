@@ -27,9 +27,9 @@
                     </div>
                     <div class="menu-lateral-contenedor">
                         <ul class="menu-lateral">
-                            <li class="menu-opcion"><a>Inicio</a></li>
-                            <li class="menu-opcion"><a>Player</a></li>
-                            <li class="menu-opcion"><a>Diviertete</a></li>
+                           <li class="menu-opcion"><a href="${pageContext.request.contextPath}/index.jspx">Inicio</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/Player.jspx">Player</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/JuegoCanvas.jspx">Diviertete</a></li>
                         </ul>
                     </div>
                 </header>

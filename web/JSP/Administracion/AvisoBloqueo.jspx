@@ -18,12 +18,17 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
         </head>
         <body>
-            <div class="cuerpo">
-                <h2><c:out value="${mensaje}"/></h2>
-                <a href="${pageContext.request.contextPath}/RecargarListasAdmin"><button>Volver</button></a>
+            <div class="main">
+
+                <div class="alerta-admin">
+                    <h2 class="titulo-seccion"><c:out value="${mensaje}"/></h2>
+                    <a href="${pageContext.request.contextPath}/RecargarListasAdmin"><button type="button" class="login-boton">Menu</button></a>
+                </div>
+
             </div>
         </body>
 
     </html>
 
 </jsp:root>
+

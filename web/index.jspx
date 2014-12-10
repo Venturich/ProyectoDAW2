@@ -17,10 +17,11 @@
 
         <head>
             <meta charset="UTF-8"/>
-            <link href="CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
-            <link href="CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
+            <script src="JAVASCRIPT/cambiarEstilo.js" type="text/javascript"><jsp:text/></script>
+            <link href="CSS/estilo_default.css" rel="stylesheet" type="text/css" id="default"/>
+            <link href="CSS/estilo_alternativo.css" rel="alternativa" type="text/css" id="alternate"/>
         </head>
-        <body>
+        <body onload="cargarEstiloInicial()">
 
 
             <div class="main">
@@ -31,25 +32,39 @@
                     </div>
                     <div class="menu-lateral-contenedor">
                         <ul class="menu-lateral">
-                            <li class="menu-opcion"><a>Inicio</a></li>
-                            <li class="menu-opcion"><a>Player</a></li>
-                            <li class="menu-opcion"><a>Diviertete</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/index.jspx">Inicio</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/Player.jspx">Player</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/JuegoCanvas.jspx">Diviertete</a></li>
                         </ul>
                     </div>
                 </header>
-                
+
                 <div class="login-marco">
-                    <h4>Accede a nuestra tienda online</h4>
-                    <form method="post" action="ComprobarLogin">
-                        <label class="login-etiqueta">Usuario (Email)</label><input type="email" name="email" class="login-entrada"/><br/>
-                        <label class="login-etiqueta">Password</label><input type="password" name="clave" class="login-entrada"/><span><c:out value="${error}"/></span><br/>
-                        <div class="login-boton-grupo"><button class="login-boton" name="boton" value="logear" type="submit">Enviar</button>
-                        <button class="login-boton" type="reset" value="logear" >Limpiar</button>
-                        <button class="login-boton" name="boton" value="registrar" type="submit">Registrarse</button>
-                        </div>
-                    </form>
+                    <c:choose>
+                        <c:when test="${error == null and usuario.email!=null}">
+                            <h3 class="titulo-seccion">Bienvenido <c:out value="${cliente.nombre}"/><br/><c:out value="${cliente.apellidos}"/></h3>
+                            <button type="button" class="login-boton"><a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx"></a>Ir a tienda</button>
+                            <button type="button" class="login-boton-largo"><a href="${pageContext.request.contextPath}/cerrarSesion"></a>Cerrar Sesión</button>
+                        </c:when><c:otherwise>
+                            
+                            <h4 class="titulo-seccion">Accede a nuestra tienda online</h4>
+                            <form method="post" action="ComprobarLogin">
+                                <label class="login-etiqueta">Usuario (Email)</label><input type="email" name="email" class="login-entrada"/><br/>
+                                <label class="login-etiqueta">Password</label><input type="password" name="clave" class="login-entrada"/>
+                                <br/>
+                                <p class="aviso-importante"><c:out value="${error}"/></p>
+                                <div class="login-boton-grupo"><button class="login-boton" name="boton" value="logear" type="submit">Enviar</button>
+                                    <button class="login-boton" type="reset" value="logear" >Limpiar</button>
+                                    <button class="login-boton" name="boton" value="registrar" type="submit">Registrarse</button>
+                                </div>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
+                        <div class="cambiar-estilo">
+                            <button type="button" onclick="cambiarEstilo()">CambiarEstilo</button>
+                        </div>
         </body>
     </html>
 

@@ -58,13 +58,13 @@ public class ProductosDAO extends Conexion {
         try {
             StringBuffer clausula = new StringBuffer("( '");
             for (int i = 0; i < codigosProducto.length; i++) {
-                clausula.append(codigosProducto[i] + "' , '");
+                clausula.append(codigosProducto[i]).append("' , '");
                 if (i == codigosProducto.length - 1) {
                     clausula.replace(clausula.lastIndexOf(","), clausula.lastIndexOf(",") + 3, ")");
                 }
             }
             String query = "Select * from productos where id in " + clausula.toString();
-            System.out.println(query);
+            //System.out.println(query);
             iniciarConexion();
             sentencia = conexion.prepareStatement(query);
             resultado = sentencia.executeQuery();

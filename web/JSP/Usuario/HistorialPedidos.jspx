@@ -19,7 +19,7 @@
             <link href="${pageContext.request.contextPath}/CSS/estilo_default.css" rel="stylesheet" type="text/css"/>
             <link href="${pageContext.request.contextPath}/CSS/estilo_alternativo.css" rel="alternativa" type="text/css"/>
             <script type="text/javascript">
-                function mostrarPedido(idpedido) {
+                function mostrarPedido(idPedido) {
 
                 }
             </script>
@@ -33,27 +33,36 @@
                     </div>
                     <div class="menu-lateral-contenedor">
                         <ul class="menu-lateral">
-                            <li class="menu-opcion"><a>Inicio</a></li>
-                            <li class="menu-opcion"><a>Player</a></li>
-                            <li class="menu-opcion"><a>Diviertete</a></li>
+                           <li class="menu-opcion"><a href="${pageContext.request.contextPath}/index.jspx">Inicio</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/Player.jspx">Player</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/JuegoCanvas.jspx">Diviertete</a></li>
                         </ul>
                     </div>
                 </header>
                 <div class="cuerpo">
-                <h1>Historial</h1>
-                <c:forEach items="${pedidosFinalizados}" var="i">
+                    <h3 class="titulo-seccion">Historial de pedidos</h3>
                     <div class="historial-pedido">
-                        <p>Pedidos número: <c:out value="${i.idPedido}"/> 
-                            Fecha pedido: <fmt:formatDate type="date" value="${i.fecha}"/> 
-                            Base importe:<fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
-                        <button onclick="mostrarPedido(${i.idPedido})">Ver pedido</button>
+                        <p class="media-columna alinear centrar-texto ">Nº</p>
+                        <p class="tercio centrar-texto">Fecha</p>
+                        <p class="tercio centrar-texto">Importe</p>
+                        <p class="cuarto centrar-texto"></p>
+                        <c:forEach items="${pedidosFinalizados}" var="i">
+                            <div class="linea-historial">
+                                <p class="media-columna alinear centrar-texto">#<c:out value="${i.idPedido}"/></p>
+                                <p class="tercio centrar-texto"><fmt:formatDate type="date" value="${i.fecha}"/> </p>
+                                <p class="tercio derecha-texto"><fmt:formatNumber type="currency" pattern="#.00 €" value="${i.baseImporte}"/></p>
+                                <button onclick="mostrarPedido(${i.idPedido})" class="login-boton cuarto">Detalles</button>
+                            </div>
+
+                        </c:forEach>
+                        <div class="login-boton-grupo inferior-centro">
+                            <button type="button" class="login-boton"><a href="${pageContext.request.contextPath}/JSP/Usuario/MenuUsuario.jspx">Volver</a></button>
+                        </div>
                     </div>
+                        <div id="contenedor-pedidos" class="contenedor-pedidos-historial">
 
-                </c:forEach>
-                <div id="contenedor-pedidos">
-
+                    </div>
                 </div>
-            </div>
             </div>
 
         </body>

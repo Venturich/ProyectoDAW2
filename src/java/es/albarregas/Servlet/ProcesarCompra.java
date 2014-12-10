@@ -55,13 +55,18 @@ public class ProcesarCompra extends HttpServlet {
             int idPedido;
             int idCliente = ((Clientes) sesion.getAttribute("cliente")).getId();
             String[] codigosProducto = request.getParameterValues("idProducto");
+            pedDao = new PedidosDAO();
+
             if (codigosProducto != null) {
                 ProductosDAO proDao = new ProductosDAO();
                 ArrayList<Productos> seleccion = proDao.getProductosSeleccionados(codigosProducto);
-                if (((ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes")).isEmpty()) {
+                ArrayList<Pedidos> pendientes = (ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes");
+
+                if (pendientes.isEmpty()) {
                     /*creamos el pedido nuevo*/
                     pedDao = new PedidosDAO();
                     idPedido = pedDao.setNuevoPedido(idCliente);
+
                     /*lo agregamos a los pendientes*/
                     sesion.setAttribute("carrito", seleccion);
                     /*insertamos las lineas */
@@ -69,16 +74,35 @@ public class ProcesarCompra extends HttpServlet {
                     lpDao.addLineasPedido(seleccion, idPedido);
 
                 } else {
+
                     LineasPedidosDAO lipeDao;
-                    ArrayList<Pedidos> pendiente = (ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes");
-                    idPedido = pendiente.get(0).getIdPedido();
-                    System.out.println("La id de pedido= " + idPedido);
+                    pendientes = (ArrayList<Pedidos>) sesion.getAttribute("pedidosPendientes");
+                    idPedido = pendientes.get(0).getIdPedido();
+                    //System.out.println("La id de pedido= " + idPedido);
                     lipeDao = new LineasPedidosDAO();
                     int ultimaLinea = lipeDao.getUltimaLinea(idPedido);
                     lipeDao = new LineasPedidosDAO();
-                    lipeDao.continuePedido(idPedido, seleccion, ultimaLinea);
+
                     ArrayList<Productos> carrito = (ArrayList<Productos>) sesion.getAttribute("carrito");
-                    carrito.addAll(seleccion);
+                    ArrayList<Productos> insertar = new ArrayList<Productos>();
+                    Boolean agregar = true;
+                    for (Productos p : seleccion) {
+                        for (Productos a : carrito) {
+                            if (a.getId().equals(p.getId())) {
+                                agregar = false;
+                            }
+
+                        }
+                        if (agregar) {
+                            insertar.add(p);
+                            carrito.add(p);
+                            agregar = true;
+                        }
+
+                    }
+                    if (!insertar.isEmpty()) {
+                        lipeDao.continuePedido(idPedido, insertar, ultimaLinea);
+                    }
                     sesion.setAttribute("carrito", carrito);
 
                 }

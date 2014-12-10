@@ -5,7 +5,8 @@
     Author     : Ventura
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
-          xmlns:c="http://java.sun.com/jsp/jstl/core">
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+           xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
     <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
     <jsp:directive.page isELIgnored="false" />
     <jsp:output omit-xml-declaration="false"
@@ -26,26 +27,34 @@
                     </div>
                     <div class="menu-lateral-contenedor">
                         <ul class="menu-lateral">
-                            <li class="menu-opcion"><a>Inicio</a></li>
-                            <li class="menu-opcion"><a>Player</a></li>
-                            <li class="menu-opcion"><a>Diviertete</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/index.jspx">Inicio</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/Player.jspx">Player</a></li>
+                            <li class="menu-opcion"><a href="${pageContext.request.contextPath}/JSP/extra/JuegoCanvas.jspx">Diviertete</a></li>
                         </ul>
                     </div>
                 </header>
                 <div class="cuerpo">
+                    <div class="carrito">
                     <c:forEach var="i" items="${pedidosPendientes}">
-                        <h1>   CL: <c:out value="${cliente.nombre}"></c:out>     
-                            PE: <c:out value="${i.idPedido}"></c:out>
+                        <h1 class="titulo-seccion">  <c:out value="${cliente.nombre}"></c:out>     
+                            <span> este es su carrito</span>
                             </h1>
                     </c:forEach>
                     <c:forEach var="k" items="${carrito}">
-                        <c:out value="${k.denominacion}"/><br/>
+                        <p> 1 unidad&#160;de&#160;<c:out value="${k.denominacion}"/>&#160;con precio&#160;
+                        <fmt:formatNumber  type="currency" pattern="##.00 €" value="${k.precio}"/>&#160;
+                        </p>
 
                     </c:forEach>
+                        <span class="texto-resaltado">¡Qué buena elección!</span>
+                        
                     <form method="post" action="${pageContext.request.contextPath}/FinalizarCompra">
+                        <div class="login-boton-grupo inferior-centro">
                         <button type="submit" name="boton" value="volver" class="login-boton">volver</button>
                         <button type="submit" name="boton" value="finalizar" class="login-boton">finalizar</button>
+                        </div>
                     </form>
+                        </div>
                 </div>
             </div>
         </body>
